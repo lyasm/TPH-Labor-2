@@ -14,7 +14,8 @@
 *.cb
 *.cb2
 .*.lb
-
+*.fcb_latexmk
+*/auto
 
 *.dvi
 *.xdv
