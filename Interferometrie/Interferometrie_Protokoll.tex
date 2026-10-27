@@ -2,19 +2,53 @@
 
 \usepackage{fontspec}
 \usepackage{titlesec}
-\usepackage[main=ngerman]{babel}
+\usepackage{float}
+\usepackage{array}
+\usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
 
 \title{Laborprotokoll Interferometrie}
 \author{David Koch, Paul Vetter}
 \date{}
+
 
 \begin{document}
 \maketitle
 \tableofcontents
 
 \section{Theorie}
-
+Laser? Interferenz? Koheränz Länge?
 \section{Aufbau}
+
+\section{Anhang/Messergebnise}
+
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{ |c|c| }
+  \multicolumn{1}{c}{Distanz [$\mu m$]}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  40 & 127 \\
+  30 & 87 \\
+  10 & 31 \\
+  50 & 162 \\
+  40 & 133 \\
+\end{tabular}
+\caption{6. Interferometrische Wellenlängenmessung}
+\label{tab:1}
+\end{table}
+
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{15pt}
+\begin{tabular}{ |c|c| }
+  \multicolumn{1}{c}{Distanz [$\mu m$]}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  13 & 50 \\
+  12 & 50 \\
+\end{tabular}
+\caption{7. Natrium Wellenlängemessung}
+\label{tab:2}
+\end{table}
+
+8. $d = 8 mm$
 
 \end{document}
 
