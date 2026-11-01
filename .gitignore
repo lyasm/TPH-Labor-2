@@ -15,7 +15,9 @@
 *.cb2
 .*.lb
 *.fcb_latexmk
+*.fdb_latexmk
 */auto
+*.synctex.gz
 
 *.dvi
 *.xdv
