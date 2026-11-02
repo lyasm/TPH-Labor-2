@@ -54,7 +54,7 @@
 \begin{titlepage} \maketitle \tableofcontents \end{titlepage}
 \pagenumbering{arabic}
 
-\section{Theorie}
+nn\section{Theorie}
 Laser? Interferenz? Koheränz Länge?
 
 \subsection{Mögliche Fehlerquellen}
@@ -67,8 +67,32 @@ Da die Messergebnisse dieses Laborprotokolls teilweise vom Augenmaß abhängen, 
 * TODO?
 
 \section{Aufbau}
+Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Projektions-Michelson-Interferometer verwendet. Zur vertikalen und horizontalen Zentrierung im Eingang des Interferometers dienten zwei kippbarejustierbare Spiegel und zwei Blenden. Sowie einige Linsen und ein Objektiv, siehe Tabelle \ref{tab:linsen}.
 
-\includegraphics[width=\textwidth]{aufbau_laser.png}
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Linse}  & \multicolumn{1}{c}{Brennweite (mm)} \\
+    M &  0.65\\
+    K & 80 \\
+    Ob & 160 \\
+    Z & 50 \\
+    F & 20 \\
+  \end{tabular}
+  \caption{Verwendete Linsen}
+  \label{tab:linsen}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{aufbau_laser.png}
+  \caption{Aufbau}
+  \label{fig:aufbau}
+\end{figure}
+\section{Vorbereitung}
+
+
 
 \section{Anhang/Messergebnisse}
 
@@ -84,7 +108,7 @@ Bei der Durchführung der Messungen gab es zuerst einige Unklarheiten, wie z.B.,
   40 & 127 \\
   30 & 87 \\
   10 & 31 \\
-  50 & 162 \\
+nn  50 & 162 \\
   40 & 133 \\
 \end{tabular}
 \caption{Interferometrische Wellenlängenmessung}
