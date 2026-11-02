@@ -34,7 +34,7 @@
 \widowpenalty = 1000 % Hurenkinder verhindern
 \displaywidowpenalty = 1000
 
-\graphicspath{{./assets/}}
+\graphicspath{{./assets/}{./plotting/}}
 
 \newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{TU_Logo_RGB}}
 \newcommand{\kopftitel}{\sffamily{\textbf{\large{Laborprotokoll Interferometrie}}}}
@@ -89,7 +89,12 @@ Jeder in diesem Protokoll dokumentierte Experimentaufbau wurde auf einer Mikroba
 
 Als Interferometer-System wird ein Projektions-Michelson-Interferometer verwendet.
 
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{aufbau_laser.png}
+\caption{Aufbau zur Messung der Wellenlänge des He-Ne-Lasers}
+\label{img:1}
+\end{figure}
 
 \section{Messergebnisse}
 
@@ -132,13 +137,13 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
 \begin{tabular}{ |c|c|c| }
   \multicolumn{1}{c}{Distanz $\Delta l$ [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe $m$} & \multicolumn{1}{c}{Wellenlänge $\lambda$ [$nm$]} \\
   40 & 127 & 629.92 +- TODO \\
-  30 & 87 & 629.92 +- TODO \\
-  10 & 31 & 629.92 +- TODO \\
-  50 & 162 & 629.92 +- TODO \\
-  40 & 133 & 629.92 +- TODO \\
+  30 & 87 & 689.65 +- TODO \\
+  10 & 31 & 645.16 +- TODO \\
+  50 & 162 & 617.28 +- TODO \\
+  40 & 133 & 601.50 +- TODO \\
 \end{tabular}
 \caption{Interferometrische Wellenlängenmessung}
-\label{tab:1}
+\label{tab:2}
 \end{table}
 
 Mittelt man diese Werte für die Wellenlänge, erhält man:
@@ -155,7 +160,7 @@ Nach ca. 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlen
 \centering
 \includegraphics[width=0.5\textwidth]{widerstand_muster.png}
 \caption{Interferenzmuster mit Heizwiderstand}
-\label{img:1}
+\label{img:2}
 \end{figure}
 
 Das Ergebnis ist nicht so eindeutig wie gewünscht. Es ist zwar eine Verzerrung des zuvor beinahe geradlinigen Interferenzmusters zu sehen, besonders im unteren rechten Bereich der Abbildung, jedoch nicht so ausschlaggebend wie im Referenzbild in der Anleitung.
@@ -183,7 +188,7 @@ Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung
   12 & 50 \\
 \end{tabular}
 \caption{Natrium Wellenlängemessung}
-\label{tab:2}
+\label{tab:3}
 \end{table}
 
 \subsection{Spektraler Abstand benachbarter Linien} \label{spektraler_abstand}
@@ -194,6 +199,26 @@ TODO
 
 TODO
 $d = 8 mm$
+
+\section{Anhang}
+
+\subsection{Visualierung der Werteverteilungen}
+
+TODO
+
+$$ \sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2} $$
+$$ \bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i $$
+
+Der Fehler des Mittelwerts:
+
+$$ \Delta \bar{x} = \frac{\sigma}{\sqrt{N}} $$ 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{gauss_laser_plot.png}
+\caption{Gauss-Verteilung der Laser-Wellenlängen}
+\label{img:3}
+\end{figure}
 
 \end{document}
 
