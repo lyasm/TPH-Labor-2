@@ -25,6 +25,7 @@
 \usepackage{xcolor}
 \usepackage{relsize}
 \usepackage{lastpage}
+\usepackage{amsmath,amssymb}
 
 % \input{glyphtounicode}
 % \pdfgentounicode=1
@@ -64,12 +65,19 @@
 \pagenumbering{arabic}
 
 \section{Theorie}
-Laser? Interferenz? Koheränz Länge?
-
+ 
+Überlagern sich zwei Lichtwellen mit Wegunterschied $\Delta s$, so entsteht ein Intensitätsmaximum für $\Delta s = m \lambda$ und ein Minimum für $\Delta s = (m + \frac{1}{2}) \lambda$ für alle $m \in \mathbb{N}$. Ein stabiles Interferenzmuster tritt aber nur auf, wenn die Wellen kohärent sind, also eine feste Phasenbeziehung haben. Die Kohärenzlänge gibt an, bis zu welchem Wegunterschied noch Interferenz beobachtet werden kann. Sie ist beim Laser sehr groß, bei einer Spektrallampe wie der Na-Dampflampe wegen der spontanen Emission jedoch deutlich kleiner.
+ 
+Im Michelson-Interferometer wird das Licht an einem halbdurchlässigen Spiegel in zwei Teilstrahlen aufgeteilt, die an den Spiegeln SP1 und SP2 reflektiert werden und anschließend wieder interferieren. Wird SP2 um die Strecke $\Delta l$ verschoben, ändert sich der Wegunterschied wegen Hin- und Rückweg um $2 \Delta l$, und pro Wellenlänge Änderung wandert ein Interferenzstreifen durch das Beobachtungsfeld. Werden $m$ Streifen gezählt, gilt:
+ 
+$$ \Delta l = \frac{m \lambda}{2} $$
+ 
+Damit lässt sich bei bekannter Wellenlänge die Verschiebung des Spiegels bestimmen und umgekehrt.
+ 
 \subsection{Mögliche Fehlerquellen}
-
+ 
 Da die Messergebnisse dieses Laborprotokolls teilweise vom Augenmaß abhängen, z.B. das Zählen der Interferenzringe im Interferenzmuster, ist bei jedem Messwert ein Fehler gegeben. In der folgenden Listen sind alle Faktoren, die als mögliche Fehlerquellen agieren könnten, aufgelistet:
-
+ 
 * Falsche Anzahl an Ringen gezählt
 * Differential-Schraube nicht genau genug verstellt
 * Laser wird nicht genau durch Objektiv, Strahlenteiler und Spiegel geschickt
@@ -162,11 +170,15 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
 
 \subsection{Interferometrische Wellenlängenmessung (Natriumlampe)} \label{natrium_messung}
 
+TODO
+
+Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung} konnten aus zeittechnischen Gründen hier nur 2 Messungen durchgeführt werden. Zusätzlich wurde hierbei die Messung nicht nach dem Zurücklegen einer festgelegten Distanz abgeschlossen, sondern nach dem Zählen von 50 Interferenzstreifen, so wie in der Anleitung beschrieben.
+
 \begin{table}[H]
 \centering
 \setlength{\tabcolsep}{15pt}
 \begin{tabular}{ |c|c| }
-  \multicolumn{1}{c}{Distanz [$\mu m$]}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  \multicolumn{1}{c}{Distanz [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe} \\
   13 & 50 \\
   12 & 50 \\
 \end{tabular}
@@ -174,7 +186,14 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
 \label{tab:2}
 \end{table}
 
-8. $d = 8 mm$
+\subsection{Spektraler Abstand benachbarter Linien} \label{spektraler_abstand}
+
+TODO
+
+\subsection{Kohärenzlänge der Na-Dampflampe} \label{kohaerenzlaenge_dampflampe}
+
+TODO
+$d = 8 mm$
 
 \end{document}
 
