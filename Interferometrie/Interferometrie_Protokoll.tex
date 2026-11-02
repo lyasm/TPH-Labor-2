@@ -53,14 +53,12 @@
 \date{}
 
 \begin{document}
-\cleardoubleoddpage
 
 \begin{titlepage} 
 \maketitle 
 \tableofcontents 
 \end{titlepage}
 
-\begin{titlepage} \maketitle \tableofcontents \end{titlepage}
 \pagenumbering{arabic}
 
 nn\section{Theorie}
@@ -76,7 +74,7 @@ Da die Messergebnisse dieses Laborprotokolls teilweise vom Augenmaß abhängen, 
 * TODO?
 
 \section{Aufbau}
-Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Projektions-Michelson-Interferometer verwendet. Zur vertikalen und horizontalen Zentrierung im Eingang des Interferometers dienten zwei kippbarejustierbare Spiegel und zwei Blenden. Sowie einige Linsen und ein Objektiv, siehe Tabelle \ref{tab:linsen}.
+Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Projektions-Michelson-Interferometer verwendet. Zur vertikalen und horizontalen Zentrierung im Eingang des Interferometers dienten zwei justierbare Spiegel und zwei Blenden. Sowie einige Linsen und ein Objektiv, siehe Tabelle \ref{tab:linsen}. Eine Skizze des Aufbaus ist in \ref{fig:aufbau} abgebildet, wobei die Zentrierspiegel nicht abgebildet sind. Die Bezeichnung der optischen Komponenten sind auch dieser Skizze zu entnehmen. Die optischen Anordnungen wurden auf einer Mikrobank aufgebaut. Im Interferometer war Sp1 mittel justierschrauben versehen, während Sp2 auf einem Messtisch mit Feinverstellung, über eine Differential-Schraube, angebracht war.
 
 \begin{table}[H]
   \centering
@@ -84,8 +82,6 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
   \begin{tabular}{ |c|c| }
     \multicolumn{1}{c}{Linse}  & \multicolumn{1}{c}{Brennweite (mm)} \\
     M &  0.65\\
-    K & 80 \\
-    Ob & 160 \\
     Z & 50 \\
     F & 20 \\
   \end{tabular}
@@ -99,9 +95,13 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
   \caption{Aufbau}
   \label{fig:aufbau}
 \end{figure}
+
 \section{Vorbereitung}
+\subsection{Vorjustierung}
+Die Vorbereitung erfolgt zuerst ohne die Linsen M und Z. Zuerst wurden die erste Blende direkt hinter den zweiten Justierspigel und die zweite direkt vor das Interferometer platztiert und beide Blenden geschlossen. Nun wurde mittels der Justierschrauben des ersten Spiegels der Laserstrahl in der ersten Blend zentriert, dieses geöffnet und dann mittels des zweiten Spiegels in der zweiten Blende zentriert. Dies wurde so oft wiederholt bis der Laserstrahl in beiden Blenden zentriert war.
 
-
+\subsection{Feinjustierung}
+Nun wurden beide Blenden entfernt, am Schirm wurden dadurhc zwei helle Punkte sichtbar, die Mittels des Justierschrauben des Sp1 zur Deckung gebracht wurden, woraufhin ein Interferenzmuster sichtbar wurde. Nun wurde daas Objektiv M auf denn Führungsschienen des Interferometers angebracht und mittels der Justierschrauben des Sp1 und der Differential Schraube die Interferenzmust so eingestellt das ca. 5 Interferenzstreifen sichtbar waren.
 
 \section{Messergebnisse}
 
@@ -109,7 +109,7 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
 
 Bei der interferometrischen Längenmessung wurden 5 Messungen durchgeführt und anschließend wurden die Ergebnisse, also die Anzahl der Interferenzringe für eine bestimmte zurückgelegte Distanz des SP2, gemittelt.
 
-Bei der Durchführung der Messungen gab es zuerst einige Unklarheiten, wie z.B., dass nur Ringe der einen Farbe gezählt werden und nicht beide, also rot (= maximum) und schwarz (= minimum). Zusätzlich war die graduelle Verstellung der Feinverstellung der Differential-Schraube eine Herausforderung, da ein leichtes Händezittern, eine falsche Handposition und ein zu großer Atemzug alle zu Anomalien in der Messung führen können.
+Bei der Durchführung der Messungen gab es zuerst einige Unklarheiten, wie z.B., dass nur Ringe der einen Farbe gezählt werden und nicht beide, also rot (= maximum) und schwarz (= minimum). Zusätzlich war die graduelle Verstellung der Feinverstellung der Differential-Schraube eine Herausforderung, da die Vibrationen durch leichtes Händezittern, falsche Handposition und zu große Atemzüge, große Verschiebung der Interferenzringe herbeiführen konnte die nicht mehr klar mit bloßem Auge abzählbar waren.
 
 \begin{table}[H]
 \centering
@@ -119,11 +119,11 @@ Bei der Durchführung der Messungen gab es zuerst einige Unklarheiten, wie z.B.,
   40 & 127 \\
   30 & 87 \\
   10 & 31 \\
-nn  50 & 162 \\
+  50 & 162 \\
   40 & 133 \\
 \end{tabular}
 \caption{Interferometrische Wellenlängenmessung}
-\label{tab:1}
+\label{tab:lasermessung}
 \end{table}
 
 Die Messungen wurden aufgrund von zeitlichen Einschränkungen jeweils für unterschiedliche (kürzere) Distanzen und nicht immer eine vollständige Umdrehung der Feinverstellung der Differential-Schraube durchgeführt. Dies ändert jedoch nichts am Ergebnis, denn mit der gemittelten Anzahl der Interferenzringe lässt sich auf die Wellenlänge des Laserlichts zurückführen:
@@ -142,7 +142,7 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
 \centering
 \setlength{\tabcolsep}{10pt}
 \begin{tabular}{ |c|c|c| }
-  \multicolumn{1}{c}{Distanz $\Delta l$ [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe $m$} & \multicolumn{1}{c}{Wellenlänge $\lambda$ [$nm$]} \\
+  \multicolumn{1}{c}{Distanz $\Delta l$ [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe $m$} & \multicolumn{1}{c}{berechnete Wellenlänge $\lambda$ [$nm$]} \\
   40 & 127 & 629.92 +- TODO \\
   30 & 87 & 629.92 +- TODO \\
   10 & 31 & 629.92 +- TODO \\
@@ -150,7 +150,7 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
   40 & 133 & 629.92 +- TODO \\
 \end{tabular}
 \caption{Interferometrische Wellenlängenmessung}
-\label{tab:1}
+\label{tab:wellenlängeberechnet}
 \end{table}
 
 Mittelt man diese Werte für die Wellenlänge, erhält man:
@@ -167,7 +167,7 @@ Nach ca. 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlen
 \centering
 \includegraphics[width=0.5\textwidth]{widerstand_muster.png}
 \caption{Interferenzmuster mit Heizwiderstand}
-\label{img:1}
+\label{fig:wiederstandinterferenz}
 \end{figure}
 
 Das Ergebnis ist nicht so eindeutig wie gewünscht. Es ist zwar eine Verzerrung des zuvor beinahe geradlinigen Interferenzmusters zu sehen, besonders im unteren rechten Bereich der Abbildung, jedoch nicht so ausschlaggebend wie im Referenzbild in der Anleitung.
@@ -191,7 +191,7 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
   12 & 50 \\
 \end{tabular}
 \caption{Natrium Wellenlängemessung}
-\label{tab:2}
+\label{tab:natriumwellenlänge}
 \end{table}
 
 8. $d = 8 mm$
@@ -200,10 +200,5 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
 
 %%% Local Variables:
 %%% mode: LaTeX
-%%% TeX-master: t
-%%% TeX-master: t
-%%% TeX-master: t
-%%% TeX-master: t
-%%% TeX-master: t
 %%% TeX-master: t
 %%% End:
