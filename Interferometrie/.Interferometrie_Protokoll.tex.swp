@@ -1,0 +1,105 @@
+\documentclass[
+  headings=optiontotocandhead,
+	oneside,
+	numbers=noenddot,
+	toc=flat,
+	11pt,
+	parskip=full,
+	listof=flat,
+  numbers=noenddot,
+	bibliography=totoc,
+	a4paper,
+  DIV=14,
+  headheight=5mm,
+  headinclude=true,
+]{scrartcl}
+
+% \usepackage{fontspec}
+% \usepackage{titlesec}
+\usepackage{float}
+\usepackage{array}
+\usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{relsize}
+\usepackage{lastpage}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\clubpenalty = 1000 % Schusterjungen verhindern
+\widowpenalty = 1000 % Hurenkinder verhindern
+\displaywidowpenalty = 1000
+
+\newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{TU_Logo_RGB}}
+\newcommand{\kopftitel}{\sffamily{\textbf{\large{Laborprotokoll Interferometrie}}}}
+
+\usepackage[automark,footsepline,plainfootsepline]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
+\setkomafont{pagenumber}{\normalfont\normalsize}
+\clearpairofpagestyles
+\ihead{\headmark}
+\ihead{\kopfbild}
+\ohead{\kopftitel}
+\ifoot{\smaller{David Koch, Paul Vetter}}
+\ofoot{Seite \pagemark/\pageref{LastPage}}
+
+\title{Laborprotokoll Interferometrie}
+\author{David Koch, Paul Vetter}
+\date{}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Theorie}
+Laser? Interferenz? Koheränz Länge?
+\section{Aufbau}
+
+\section{Anhang/Messergebnisse}
+
+Bei der interferometrischen Längenmessung wurden 5 Messungen durchgeführt und anschließend wurden die Ergebnisse, also die Anzahl der Interferenzringe für eine bestimmte zurückgelegte Distanz des SP2, gemittelt.
+
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{ |c|c| }
+  \multicolumn{1}{c}{Distanz [$\mu m$]}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  40 & 127 \\
+  30 & 87 \\
+  10 & 31 \\
+  50 & 162 \\
+  40 & 133 \\
+\end{tabular}
+\caption{Interferometrische Wellenlängenmessung}
+\label{tab:1}
+\end{table}
+
+Die Messungen wurden aufgrund von zeitlichen Einschränkungen jeweils für unterschiedliche (kürzere) Distanzen und nicht immer eine vollständige Umdrehung der Feinverstellung der Differential-Schraube durchgeführt. Dies ändert jedoch nichts am Ergebnis, denn mit der gemittelten Anzahl der Interferenzringe lässt sich auf die Wellenlänge des Laserlichts zurückführen:
+
+$  $ 
+
+INSERT RECHNUNG HERE
+
+\begin{table}[H]
+\centering
+\setlength{\tabcolsep}{15pt}
+\begin{tabular}{ |c|c| }
+  \multicolumn{1}{c}{Distanz [$\mu m$]}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  13 & 50 \\
+  12 & 50 \\
+\end{tabular}
+\caption{Natrium Wellenlängemessung}
+\label{tab:2}
+\end{table}
+
+8. $d = 8 mm$
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: t
+%%% End:
