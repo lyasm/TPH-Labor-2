@@ -26,8 +26,8 @@
 \usepackage{relsize}
 \usepackage{lastpage}
 
-\input{glyphtounicode}
-\pdfgentounicode=1
+% \input{glyphtounicode}
+% \pdfgentounicode=1
 
 \clubpenalty = 1000 % Schusterjungen verhindern
 \widowpenalty = 1000 % Hurenkinder verhindern
@@ -58,6 +58,7 @@
 \tableofcontents 
 \end{titlepage}
 
+\begin{titlepage} \maketitle \tableofcontents \end{titlepage}
 \pagenumbering{arabic}
 
 \section{Theorie}
@@ -177,6 +178,9 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
 
 %%% Local Variables:
 %%% mode: LaTeX
+%%% TeX-master: t
+%%% TeX-master: t
+%%% TeX-master: t
 %%% TeX-master: t
 %%% TeX-master: t
 %%% TeX-master: t
