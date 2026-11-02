@@ -33,6 +33,8 @@
 \widowpenalty = 1000 % Hurenkinder verhindern
 \displaywidowpenalty = 1000
 
+\graphicspath{{./assets/}}
+
 \newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{TU_Logo_RGB}}
 \newcommand{\kopftitel}{\sffamily{\textbf{\large{Laborprotokoll Interferometrie}}}}
 
@@ -51,6 +53,13 @@
 \date{}
 
 \begin{document}
+\cleardoubleoddpage
+
+\begin{titlepage} 
+\maketitle 
+\tableofcontents 
+\end{titlepage}
+
 \begin{titlepage} \maketitle \tableofcontents \end{titlepage}
 \pagenumbering{arabic}
 
@@ -94,7 +103,9 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
 
 
 
-\section{Anhang/Messergebnisse}
+\section{Messergebnisse}
+
+\subsection{Interferometrische Wellenlängenmessung (Laser)} \label{laser_messung}
 
 Bei der interferometrischen Längenmessung wurden 5 Messungen durchgeführt und anschließend wurden die Ergebnisse, also die Anzahl der Interferenzringe für eine bestimmte zurückgelegte Distanz des SP2, gemittelt.
 
@@ -144,7 +155,32 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
 
 Mittelt man diese Werte für die Wellenlänge, erhält man:
 
+TODO
 
+\subsection{Sichtbarmachung von Brechzahländerungen} \label{brechzahl}
+
+Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahländerung von Licht aufgrund der Temperatur visualisiert werden. Die Spiegel wurden der Anleitung nach so eingestellt, dass ca. 15 Interferenzringe auf der Projektionsfläche sichtbar sind. Anschließend wurde ein Heizwiderstand mit 250$\Omega$ an eine Spannungsquelle angeschlossen, um diesen auf eine für das Experiment passende Temperatur zu bringen. In der Anleitung wird für ein 300$\Omega$-Widerstand eine Spannung von 30V empfohlen, da unserer einen geringeren Widerstandswert hatte, haben wir als Spannung 25$V$ gewählt. 
+
+Nach ca. 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{widerstand_muster.png}
+\caption{Interferenzmuster mit Heizwiderstand}
+\label{img:1}
+\end{figure}
+
+Das Ergebnis ist nicht so eindeutig wie gewünscht. Es ist zwar eine Verzerrung des zuvor beinahe geradlinigen Interferenzmusters zu sehen, besonders im unteren rechten Bereich der Abbildung, jedoch nicht so ausschlaggebend wie im Referenzbild in der Anleitung.
+
+Diese Diskrepanz lässt sich mit großer Sicherheit auf zwei Faktoren zurückführen:
+\begin{enumerate}
+  \item Der Widerstand war nicht heiß genug, z.B. wegen einer zu niedrigen Spannung.
+  \item Die Positionierung des Widerstands ist suboptimal, denn er konnte nicht ohne Gefahr parallel zum Laserlicht ausgerichtet werden aufgrund von mangelndem Platz im Strahlengang von SP2.
+\end{enumerate}
+
+Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
+
+\subsection{Interferometrische Wellenlängenmessung (Natriumlampe)} \label{natrium_messung}
 
 \begin{table}[H]
 \centering
