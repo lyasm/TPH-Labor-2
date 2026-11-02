@@ -1,12 +1,12 @@
 \documentclass[
   headings=optiontotocandhead,
-	oneside,
+	twosidep,
 	numbers=noenddot,
 	toc=flat,
 	11pt,
 	parskip=full,
 	listof=flat,
-  numbers=noenddot,
+        numbers=noenddot,
 	bibliography=totoc,
 	a4paper,
   DIV=14,
@@ -49,10 +49,10 @@
 \author{David Koch, Paul Vetter}
 \date{}
 
-
+\begin{titlepage} \maketitle \tableofcontents \end{titlepage}
 \begin{document}
-\maketitle
-\tableofcontents
+\cleardoubleoddpage
+\pagenumbering{arabic}
 
 \section{Theorie}
 Laser? Interferenz? Koheränz Länge?
@@ -101,5 +101,7 @@ INSERT RECHNUNG HERE
 
 %%% Local Variables:
 %%% mode: LaTeX
+%%% TeX-master: t
+%%% TeX-master: t
 %%% TeX-master: t
 %%% End:
