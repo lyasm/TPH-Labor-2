@@ -71,7 +71,7 @@ Im Michelson-Interferometer wird das Licht an einem halbdurchlässigen Spiegel i
  
 \begin{equation}
  \Delta l = \frac{m \lambda}{2} 
-\label{equ:1.0.1}
+\label{eq:1.0.1}
 \end{equation}
 
  
@@ -99,7 +99,7 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
   \centering
   \setlength{\tabcolsep}{10pt}
   \begin{tabular}{ |c|c| }
-    \multicolumn{1}{c}{Linse}  & \multicolumn{1}{c}{Brennweite (mm)} \\
+    \multicolumn{1}{c}{Linse}  & \multicolumn{1}{c}{Brennweite [mm] } \\
     M &  0.65\\
     Z & 50 \\
     F & 20 \\
@@ -120,12 +120,12 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
 Die Vorbereitung erfolgt zuerst ohne die Linsen M und Z. Zuerst wurden die erste Blende direkt hinter den zweiten Justierspigel und die zweite direkt vor das Interferometer platztiert und beide Blenden geschlossen. Nun wurde mittels der Justierschrauben des ersten Spiegels der Laserstrahl in der ersten Blend zentriert, dieses geöffnet und dann mittels des zweiten Spiegels in der zweiten Blende zentriert. Dies wurde so oft wiederholt bis der Laserstrahl in beiden Blenden zentriert war.
 
 \subsection{Feinjustierung}
-Nun wurden beide Blenden entfernt, am Schirm wurden dadurhc zwei helle Punkte sichtbar, die Mittels des Justierschrauben des Sp1 zur Deckung gebracht wurden, woraufhin ein Interferenzmuster sichtbar wurde. Nun wurde daas Objektiv M auf denn Führungsschienen des Interferometers angebracht und mittels der Justierschrauben des Sp1 und der Differential Schraube die Interferenzmust so eingestellt das ca. 5 Interferenzstreifen sichtbar waren.
+Nun wurden beide Blenden entfernt, am Schirm wurden dadurhc zwei helle Punkte sichtbar, die Mittels des Justierschrauben des Sp1 zur Deckung gebracht wurden, woraufhin ein Interferenzmuster sichtbar wurde. Nun wurde daas Objektiv M auf denn Führungsschienen des Interferometers angebracht und mittels der Justierschrauben des Sp1 und der Differential Schraube die Interferenzmust so eingestellt das circa 5 Interferenzstreifen sichtbar waren.
 
 \subsection{Ringdarstellung}
-Nun befestigt man die Zwischenlinse Z mit \textcolor{red}{cirka?} 64 mm Abstand zur Kante des Interferometer auf den Führstangen, zwischen Objektiv M und Interferometer. Nun erhält man Interferenz Ringe am Schirm, wie in Abbildung \ref{fig:ringe} zu sehen ist.
+Nun befestigt man die Zwischenlinse Z mit circa 64 mm Abstand zur Kante des Interferometer auf den Führstangen, zwischen Objektiv M und Interferometer. Nun erhält man Interferenz Ringe am Schirm, wie in Abbildung \ref{fig:ringe} zu sehen ist.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centerline{\includegraphics[trim={50px 400px 180px 650px},clip, width=0.77\textwidth,]{assets/laser_ringe.jpeg}}
 \caption{Interferenzringe am Schirm}
 \label{fig:ringe}
@@ -158,7 +158,7 @@ Die Messungen wurden aufgrund von zeitlichen Einschränkungen jeweils für unter
 
 \begin{equation}
  \Delta l = \frac{m \lambda}{2} \Rightarrow \lambda = \frac{2 \Delta l}{m}
- \label{equ:4.1.1}
+ \label{eq:4.1.1}
 \end{equation}
  
 
@@ -166,7 +166,7 @@ Bei der ersten Messung hat der Spiegel SP2 eine Distanz von $20 \mu m$ zurückge
 
 \begin{equation}
  \lambda = \frac{2 \Delta l}{m} = \frac{2 \cdot 40 \, \mu m} {127} \approx 629\, nm
-\label{equ:4.1.2}
+\label{eq:4.1.2}
 \end{equation}
 
 
@@ -199,23 +199,20 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
 
 \begin{equation}
 \label{eq:4.1.4}
-s= \sqrt{\frac{\sum \left(f_i -  \overline{f} \,  \right)^{2}}{N-1}} \approx 34 \, nm
+\Delta \overline{\lambda}= \sqrt{\sum \left( \frac{\partial \overline{\lambda}}{\partial \lambda_{1}} \Delta \lambda_i \right)^2}= 42.91 \, nm
 \end{equation}
 
-\begin{equation}
-\label{eq:4.1.5}
-\Delta \overline{f}= \frac{s}{\sqrt{N}} \approx 15 \, nm
-\end{equation}
+% Würden wir die 10 Ring Messung ignorieren sogar nur 23 nm Fehler. Should we do that?
 
-Mittelt man diese Werte für die Wellenlänge, erhält man: $\lambda = 637 \,nm \pm 15 \,nm$. Vergleicht man dies mit der gegebenen Wellenlänge des Lasers, erkennt man, dass diese innerhalb des Fehlers liegt.
+Mittelt man diese Werte für die Wellenlänge, erhält man: $\lambda = 637 \,nm \pm 43 \,nm$. Vergleicht man dies mit der gegebenen Wellenlänge des Lasers, erkennt man, dass diese innerhalb des Fehlers liegt.
 
 
 
 \subsection{Sichtbarmachung von Brechzahländerungen} \label{brechzahl}
 
-Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahländerung von Licht aufgrund der Temperatur visualisiert werden. Die Spiegel wurden der Anleitung nach so eingestellt, dass ca. 15 Interferenzringe auf der Projektionsfläche sichtbar sind. Anschließend wurde ein Heizwiderstand mit 250$\Omega$ an eine Spannungsquelle angeschlossen, um diesen auf eine für das Experiment passende Temperatur zu bringen. In der Anleitung wird für ein 300$\Omega$-Widerstand eine Spannung von 30V empfohlen, da unserer einen geringeren Widerstandswert hatte, haben wir als Spannung 25$V$ gewählt. 
+Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahländerung von Licht aufgrund der Temperatur visualisiert werden. Die Spiegel wurden der Anleitung nach so eingestellt, dass 10 bis 15 Interferenzringe auf der Projektionsfläche sichtbar sind. Anschließend wurde ein Heizwiderstand mit 250$\Omega$ an eine Spannungsquelle angeschlossen, um diesen auf eine für das Experiment passende Temperatur zu bringen. In der Anleitung wird für ein 300$\Omega$-Widerstand eine Spannung von 30V empfohlen, da unserer einen geringeren Widerstandswert hatte, haben wir als Spannung 25$V$ gewählt. 
 
-Nach ca. 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. 
+Nach 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. 
 
 \begin{figure}[H]
 \centering
@@ -236,33 +233,36 @@ Nichtsdestotrotz ist eine Brechzahländerung ausreichend erkennbar.
 
 \subsection{Interferometrische Wellenlängenmessung (Natrium-Dampflampe)} \label{natrium_messung}
 
-Mit dem Aufbau wie in \ref{laser_messung} lassen sich nicht nur die Inferenzeffekte eines Lasers visualisieren, sondern auch von anderen Strahlungsquellen. In diesem Fall wird eine Natrium-Dampflampe verwendet, um schließlich die Wellenlänge dessen Lichts sowie die Kohärenzlänge zu errechhnen.
+Mit dem Aufbau wie in \ref{laser_messung} lassen sich nicht nur die Inferenzeffekte eines Lasers visualisieren, sondern auch von anderen Strahlungsquellen. In diesem Fall wird eine Natrium-Dampflampe verwendet, um schließlich die Wellenlänge dessen Lichts sowie die Kohärenzlänge zu errechhnen. Dafür wurde das M Ojektiv entfernt und stattdessen eine Blende circa 2cm hinter die Linse F und 7.5cm vor dem Interferometer platziert.
 
-Noch bevor die Na-Dampflampe Teil des Aufbaus war, wurden die Einstellungen der Linsen, der Blende sowie der Spiegel der Anleitung nach angepasst, um die späteren Inferferenzmuster der Na-Dampflampe am besten zu visualisieren. Dazu wurde alles so eingestellt, sodass ca. 10 vertikale Interferenzstreifen auf der Projektionsfläche erschienen sind. Anschließend wurde der Laser abgesteckt und die bereits "vorgewärmte" Dampflampe mit ihrer Öffnung so nah wie möglich an die Linse F gestellt. Zusätzlich wurde ein schwarzes Stofftuch über den Abschnitt zwischen Lampenöffnung und Linse F gelegt, damit der Raum so gut wie möglich abgedunkelt bleibt.
+Zur Vorbereitung wurden die Einstellungen der Linsen, der Blende sowie der Spiegel angepasst, um die späteren Inferferenzmuster der Na-Dampflampe am bestmöglich sichtbar zu machen. Dazu wurde alles so eingestellt, sodass zrika 10 vertikale Interferenzstreifen auf der Projektionsfläche erschienen sind. Anschließend wurde der Laser abgeschalten und die bereits "vorgewärmte" Dampflampe mit ihrer Öffnung so nah wie möglich an die Linse F gestellt. Zusätzlich wurde ein schwarzes Stofftuch über den Abschnitt zwischen Lampenöffnung und Linse F gelegt, damit der Raum so gut wie möglich abgedunkelt bleibt.
 
 Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung} konnten aus zeittechnischen Gründen hier nur 2 Messungen durchgeführt werden. Zusätzlich wurde hierbei die Messung nicht nach dem Zurücklegen einer festgelegten Distanz abgeschlossen, sondern nach dem Zählen von 50 Interferenzstreifen, so wie in der Anleitung beschrieben.
 
 \begin{table}[H]
 \centering
 \setlength{\tabcolsep}{15pt}
-\begin{tabular}{ |c|c| }
-  \multicolumn{1}{c}{Distanz [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe} \\
-  13 & 50 \\
-  12 & 50 \\
+\begin{tabular}{ |c|c|c| }
+  \multicolumn{1}{c}{Distanz [$\mu m$]} & \multicolumn{1}{c}{$\sum$ Ringe} & \multicolumn{1}{c}{berechnete Wellenlänge [nm]}\\
+  13 & 50 & 520 $\pm$ 132\\
+  12 & 50 & 480 $\pm$ 128\\
 \end{tabular}
 \caption{Natrium Wellenlängemessung}
 \label{tab:natriumwellenlänge}
 \end{table}
 
-Es war zusätzlich eine Herausforderung, die Interferenzringe überhaupt zu zählen, denn es war leider trotz voriger Justierung kein richtiges Inferferenzmuster zu sehen.
+Es war zusätzlich eine Herausforderung, die Interferenzringe zu zählen, denn wie in \ref{fig:na_ringe} zu sehen ist sind diese nur sehr schwach erkennbar.
 
-\begin{figure}[htbp]
+Natriumdampf Lampen senden Licht mit den Wellenlängen $\lambda = 589 \text{ \& } 589,6 \, nm$ aus. Nimmt man nun für die gezählten Ringe einen Fehler von $\pm 5$ Ringen und für die Distanz von $\pm 2 \,nm$ erhält man mit der Formel \ref{eq:4.1.1}: $\Delta \overline{ \lambda}= 91.93 \, nm$.  Also 500nm $\pm$ 92 nm.
+
+% errechnete lambda: 520 und 480
+
+\begin{figure}[H]
 \centerline{\includegraphics[trim={50px 400px 180px 650px},clip, width=0.77\textwidth,]{assets/natrium_ringe1.jpg}}
 \caption{Interferenzringe der Natrium-Dampflampe am Schirm}
 \label{fig:na_ringe}
 \end{figure}
 
-Das Interferenzmuster fehlte jedoch nicht vollständig, besonders am rechten Rand der Projektion konnten Maxima und Minima des Lichts erkannt werden (siehe Abbildung \ref{fig:na_ringe}). Anhand dieser wurde die Messung, also die Zählung der Inferenzringe, durchgeführt. Es war aber jedoch eine große Herausforderung diese klar zu sehen und zu zählen.
 
 TODO Wellenlänge Rechnung
 
@@ -270,7 +270,45 @@ Die Kohärenzlänge wird später in Abschnitt \ref{kohaerenzlaenge_dampflampe} b
 
 \subsection{Spektraler Abstand benachbarter Linien} \label{spektraler_abstand}
 
-TODO
+Da die Natriumlampe nicht wie der Laser monochromatisch ist, sondern bei zwei Wellenlängen Licht ausstrahlt, gibt es nicht nur eine Interferenz, sondern ein Interferenzpaar. Bei passender Wegdifferenz, die durch verstellen der Differentialschraube erreicht werden kann, ist das durch ein deutlich stärkeres Interferenzmuster zu erkennen, da beide Interferenzen zusammenfallen. Hier soll nun die Differenz der Wellenlänge dieser Doppellinie ermittelt werden. Nun verschiebt man denn Messtisch solange bis das Interferenzmuster schwächer und dann wieder scharf wird. Seine dei Wellenlängen der beiden $\lambda_{1}$ $\lambda_{2}$. Bei diesem zusammenfallen stehen die Wellenlängen im Verhältnis: 
+
+\begin{equation}
+\label{eq:4.4.1}
+n \cdot \lambda_{1} = m \cdot \lambda_{2}
+\end{equation}
+
+Bei dem nächsten zusammenfallen gilt dann:
+
+\begin{equation}
+\label{eq:4.4.2}
+\left( n + k \right) \lambda_{1} = \left( m+k+1 \right) \lambda_{2} \; \qquad \qquad \quad \text{mit } k \in \mathbb{Z}
+\end{equation}
+\begin{equation}
+\label{eq:4.4.3}
+\Delta \lambda_{12} = \lambda_{1}-\lambda_{2}=\frac{\lambda_{2}}{k}
+\end{equation}
+
+Wobei k die Anzahl der Interferenzmaxima ist die zwischen dem zusammenfallen vorbeilaufen. Ist Sp 2 um die Distanz d verschoben gilt:
+\begin{equation}
+\label{eq:4.4.4}
+k=\frac{2d}{\lambda_1} \quad \text{und damit} \quad \Delta \lambda_{12}= \frac{\lambda_1 \cdot \lambda_2}{2d} = \frac{\lambda^{2}}{2d} = 0.5nm
+\end{equation}
+
+Formel \ref{eq:4.1.1} Wird hier zu
+\begin{equation}
+\label{eq:4.4.5}
+\frac{\partial \Delta \lambda_{12}}{\partial \lambda}=\frac{\lambda}{d} \qquad \frac{\partial
+\Delta \lambda_{12}}{\partial d} = -\frac{\Delta\lambda^{2}}{2d^{2}}
+\end{equation}
+
+\begin{equation}
+\Delta = \sqrt{\left(  \frac{\lambda}{d} \Delta \lambda \right)^{2}+ \left( \frac{\lambda^{2}}{2d^{2}} \Delta d \right)^{2}}
+\label{eq:4.4.6}
+\end{equation}
+
+Die gemessene Distanz waren $25ß \, \mu m$ Nimmmt man für diese Distanz einen Fehler von 10 Mikrometer erhält man mittels den Formeln \ref{eq:4.4.4} und \ref{eq:4.4.6}: $\Delta \lambda_{12}=0.5 \, \pm 0.14 \,nm$
+
+
 
 \subsection{Kohärenzlänge der Na-Dampflampe} \label{kohaerenzlaenge_dampflampe}
 
@@ -282,15 +320,14 @@ $d = 8 mm$
 \subsection{Visualierung der Werteverteilungen}
 
 TODO
-\textcolor{red}{\textbf{\Huge{Wann ist N und N-1??? bei $\sigma$}}}
 \begin{equation}
   \sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2}
-  \label{equ:?.1}
+  \label{eq:?.1}
 \end{equation}
 
 \begin{equation}
  \bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i
-\label{equ:?.2}
+\label{eq:?.2}
 \end{equation}
 
 
@@ -298,7 +335,7 @@ Der Fehler des Mittelwerts:
 
 \begin{equation}
  \Delta \bar{x} = \frac{\sigma}{\sqrt{N}} 
-\label{equ:?.3}
+\label{eq:?.3}
 \end{equation}
 
 
@@ -313,6 +350,8 @@ Der Fehler des Mittelwerts:
 
 %%% Local Variables:
 %%% mode: LaTeX
+%%% TeX-master: t
+%%% TeX-master: t
 %%% TeX-master: t
 %%% TeX-master: t
 %%% TeX-master: t
