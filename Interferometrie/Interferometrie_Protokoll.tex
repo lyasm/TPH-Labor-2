@@ -10,6 +10,7 @@
   bibliography=totoc,
   a4paper,
   DIV=14,
+  BCOR=22mm,
   headheight=5mm,
   headinclude=true,
 ]{scrartcl}
@@ -18,6 +19,8 @@
 % \usepackage{titlesec}
 \usepackage{float}
 \usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -55,12 +58,14 @@
 
 \begin{document}
 
-\begin{titlepage} 
-\maketitle 
-\tableofcontents 
+\begin{titlepage}
+\setcounter{page}{1}
+\maketitle
+\tableofcontents
 \end{titlepage}
 
-\pagenumbering{arabic}
+\setcounter{page}{2}
+\renewcommand{\thepage}{\the\numexpr\value{page}-1\relax}
 
 \section{Theorie}
 \label{sec:theorie}
@@ -92,7 +97,6 @@ Von allen diesen Fehlerquellen sind die zwei mit dem größten Effekt das ungena
 
 \section{Aufbau}
 
-
 Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Projektions-Michelson-Interferometer verwendet. Zur vertikalen und horizontalen Zentrierung im Eingang des Interferometers dienten zwei justierbare Spiegel und zwei Blenden. Sowie einige Linsen und ein Objektiv, siehe Tabelle \ref{tab:linsen}. Eine Skizze des Aufbaus ist in Abbildung \ref{fig:aufbau} zu sehen, wobei die Zentrierspiegel nicht in der Abbildung inkludiert sind. Die Bezeichnung der optischen Komponenten sind auch dieser Skizze zu entnehmen. Die optischen Anordnungen wurden auf einer Mikrobank aufgebaut. Im Interferometer war SP1 mittel Justierschrauben versehen, während SP2 auf einem Messtisch, mit Feinverstellung über eine Differential-Schraube, angebracht war.
 
 Die optischen Anordnungen wurden auf einer Mikrobank aufgebaut. Im Interferometer war SP1 mit Justierschrauben versehen, während SP2 auf einem Messtisch mit Feinverstellung, über eine Differential-Schraube, angebracht war.
@@ -123,7 +127,7 @@ Die optischen Anordnungen wurden auf einer Mikrobank aufgebaut. Im Interferomete
 Die Vorbereitung erfolgte zuerst ohne die Linsen M und Z. Zuerst wurden die erste Blende direkt hinter den zweiten Justierspiegel und die zweite direkt vor das Interferometer platziert und beide Blenden geschlossen. Nun wurde mittels der Justierschrauben des ersten Spiegels der Laserstrahl in der ersten Blend zentriert, dieses geöffnet und dann mittels des zweiten Spiegels in der zweiten Blende zentriert. Dies wurde so oft wiederholt bis der Laserstrahl in beiden Blenden zentriert war.
 
 \subsection{Feinjustierung}
-Nun wurden beide Blenden entfernt, am Schirm wurden dadurch zwei helle Punkte sichtbar, die Mittels des Justierschrauben des SP1 zur Deckung gebracht wurden, woraufhin ein Interferenzmuster sichtbar wurde. Nun wurde das Objektiv M auf denn Führungsschienen des Interferometers angebracht und mittels der Justierschrauben des SP1 und der Differential Schraube die Interferenzmust so eingestellt das circa 5 Interferenzstreifen sichtbar wurden.
+Nun wurden beide Blenden entfernt, am Schirm wurden dadurch zwei helle Punkte sichtbar, die Mittels des Justierschrauben des SP1 zur Deckung gebracht wurden, woraufhin ein Interferenzmuster sichtbar wurde. Nun wurde das Objektiv M auf denn Führungsschienen des Interferometers angebracht und mittels der Justierschrauben des SP1 und der Differential-Schraube die Interferenzmust so eingestellt das circa 5 Interferenzstreifen sichtbar wurden.
 
 \subsection{Ringdarstellung}
 Nun wurde die Zwischenlinse Z mit circa 64 mm Abstand zur Kante des Interferometer auf den Führstangen, zwischen Objektiv M und Interferometer befestigt. Nun erschienen Interferenz Ringe am Schirm, wie in Abbildung \ref{fig:ringe} zu sehen ist. 
@@ -163,7 +167,6 @@ Die Messungen wurden aufgrund von zeitlichen Einschränkungen jeweils für unter
  \Delta l = \frac{m \lambda}{2} \Rightarrow \lambda = \frac{2 \Delta l}{m}
  \label{eq:4.1.1}
 \end{equation}
- 
 
 Bei der ersten Messung hat der Spiegel SP2 eine Distanz von $40 \, \mu m$ zurückgelegt, also ist $\Delta l = 40 \, \mu m$. Insgesamt wurden 127 Ringe gezählt, somit ist $m = 127$. Eingesetzt in die obige Formel für die Wellenlänge:
 
@@ -172,7 +175,7 @@ Bei der ersten Messung hat der Spiegel SP2 eine Distanz von $40 \, \mu m$ zurüc
 \label{eq:4.1.2}
 \end{equation}
 
-Laut den technischen Daten des He-Ne-Lasers 155 emittiert dieser Licht mit einer Wellenlänge von $\lambda = 632.8 \,nm$. Bei einem Fehler für die gezählten Ringe von $\pm 2$ und für die Distanz $\pm 2 \, \mu m$ liefrt folgende Formel einen Fehler von $\pm 41.42 \, n m$:
+Laut den technischen Daten des He-Ne-Lasers 155 emittiert dieser Licht mit einer Wellenlänge von $\lambda = 632.8 \,nm$. Bei einem Fehler für die gezählten Ringe von $\pm 2$ und für die Distanz $\pm 2 \, \mu m$ liefert folgende Formel einen Fehler von $\pm 41.42 \, n m$:
 % (Fehlerrange 672 - 589.1472)
 
 \begin{equation}
@@ -204,40 +207,38 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechendem $\Delta l$ u
 
 % Würden wir die 10 Ring Messung ignorieren sogar nur 45 nm Fehler. Should we do that? wuascht (ausser der tutor sagt was in die Richtung dass der Fehler zu groß ist)
 
-
 Werden diese Werte für die Wellenlänge gemittelt, erhält man: $\lambda = 637 \,nm \pm 75 \,nm$. Vergleicht man dies mit der gegebenen Wellenlänge des Lasers, erkennt man, dass diese innerhalb des Fehlers liegt. Wobei der Fehler über Formel \ref{eq:4.1.4} berechnet wurde.
 
 Eine Visualisierung der gemessenen Daten für die Wellenlänge des He-Ne-Lasers ist in Abschnitt \ref{gauss_visualisation} zu finden.
 
 \subsection{Sichtbarmachung von Brechzahländerungen} \label{brechzahl}
 
+Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahländerung von Licht aufgrund der Temperatur visualisiert werden. Die Spiegel wurden der Anleitung nach so eingestellt, dass 10 bis 15 Interferenzringe auf der Projektionsfläche sichtbar waren. Anschließend wurde ein Heizwiderstand mit 250$\, \Omega$ an eine Spannungsquelle angeschlossen, um diesen auf eine für das Experiment passende Temperatur zu bringen. In der Anleitung wird für ein 300$\Omega$-Widerstand eine Spannung von 30 V empfohlen, da nur ein Widerstand mit geringeren Widerstandswert vorhanden war, wurden 25 V als Spannung gewählt. 
 
-Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahländerung von Licht aufgrund der Temperatur visualisiert werden. Die Spiegel wurden der Anleitung nach so eingestellt, dass 10 bis 15 Interferenzringe auf der Projektionsfläche sichtbar waren. Anschließend wurde ein Heizwiderstand mit 250$\, \Omega$ an eine Spannungsquelle angeschlossen, um diesen auf eine für das Experiment passende Temperatur zu bringen. In der Anleitung wird für ein 300$\Omega$-Widerstand eine Spannung von 30 V empfohlen, da nur ein Widerstand mit geringeren Widerstandswert vorhanden war, wurden 25 $V$ als Spannung gewählt. 
-
-Nach 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. Dies ist in Abbildung \ref{fig:wiederstandinterferenz} zu sehen.
+Nach 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. Dies ist in Abbildung \ref{fig:widerstandinterferenz} zu sehen.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{widerstand_muster.png}
 \caption{Interferenzmuster mit Heizwiderstand}
-\label{fig:wiederstandinterferenz}
+\label{fig:widerstandinterferenz}
 \end{figure}
 
 Das Ergebnis ist nicht so eindeutig wie gewünscht. Es ist zwar eine Verzerrung des zuvor beinahe geradlinigen Interferenzmusters zu sehen, besonders im unteren rechten Bereich der Abbildung, jedoch nicht so ausschlaggebend wie im Referenzbild in der Anleitung.
 
 Diese Diskrepanz lässt sich mit großer Sicherheit auf zwei Faktoren zurückführen:
 \begin{enumerate}
-  \item Der Widerstand war nicht heiß genug, da ein kleinerer Wiederstand und weniger Spannung verwendet wurde. Mit dem ohmschen Gesetz erhält man 3 Watt vorgesehen, aber nur 2.8 Watt bei dem verwendeten 220$\, \Omega$ Wiederstand.
+  \item Der Widerstand war nicht heiß genug, da ein kleinerer Widerstand und weniger Spannung verwendet wurde. Mit dem ohmschen Gesetz erhält man 3 Watt, beim Experiment waren es aber nur 2.8 Watt bei dem verwendeten 220$\, \Omega$ Widerstand.
   \item Die Positionierung des Widerstands ist suboptimal, denn er konnte nicht parallel zum Laserlicht ausgerichtet werden aufgrund von mangelndem Platz im Strahlengang von SP2.
 \end{enumerate}
 
-Nichtsdestotrotz ist eine Brechzahländerung  erkennbar.
+Nichtsdestotrotz ist eine Brechzahländerung erkennbar.
 
 \subsection{Interferometrische Wellenlängenmessung (Natrium-Dampflampe)} \label{natrium_messung}
 
 Mit dem Aufbau von Abschnitt \ref{laser_messung} lassen sich nicht nur die Inferenzeffekte eines Lasers visualisieren, sondern auch von anderen Strahlungsquellen. In diesem Fall wird eine Natrium-Dampflampe verwendet, um schließlich die Wellenlänge dessen Lichts sowie die Kohärenzlänge zu errechhnen. Dafür wurde das M Objektiv entfernt und stattdessen eine Blende circa 2 cm hinter die Linse F und 7.5 cm vor dem Interferometer platziert.
 
-Zur Vorbereitung wurden die Einstellungen der Linsen, der Blende sowie der Spiegel angepasst, um die späteren Inferferenzmuster der Na-Dampflampe am bestmöglich sichtbar zu machen. Dazu wurde alles so eingestellt, sodass zirka 10 vertikale Interferenzstreifen auf der Projektionsfläche erschienen sichtbar waren. Anschließend wurde der Laser abgeschalten und die bereits "vorgewärmte" Dampflampe mit ihrer Öffnung so nah wie möglich an die Linse F gestellt. Zusätzlich wurde ein schwarzes Stofftuch über den Abschnitt zwischen Lampenöffnung und Linse F gelegt, um Streulicht möglichst zu vermeiden.
+Zur Vorbereitung wurden die Einstellungen der Linsen, der Blende sowie der Spiegel angepasst, um die späteren Inferferenzmuster der Na-Dampflampe am bestmöglich sichtbar zu machen. Dazu wurde alles so eingestellt, sodass zirka 10 vertikale Interferenzstreifen auf der Projektionsfläche erschienen sichtbar waren. Anschließend wurde der Laser abgeschalten und die bereits vorgewärmte Dampflampe mit ihrer Öffnung so nah wie möglich an die Linse F gestellt. Zusätzlich wurde ein schwarzes Stofftuch über den Abschnitt zwischen Lampenöffnung und Linse F gelegt, um Streulicht möglichst zu vermeiden.
 
 Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung} konnten aus zeitlichen Gründen hier nur 2 Messungen durchgeführt werden. Zusätzlich wurde hierbei die Messung nicht nach dem Zurücklegen einer festgelegten Distanz abgeschlossen, sondern nach dem Zählen von 50 Interferenzstreifen, so wie in der Anleitung beschrieben.
 
@@ -254,7 +255,6 @@ Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung
 \end{table}
 
 Es war zusätzlich eine Herausforderung, die Interferenzringe zu zählen, denn wie in Abbildung \ref{fig:na_ringe} zu sehen ist sind diese nur sehr schwach erkennbar.
-
 
 Natriumdampf Lampen senden Licht mit den Wellenlängen $\lambda = 589 \text{ \& } 589,6 \, nm$ aus. Nimmt man nun für die gezählten Ringe einen Fehler von $\pm 5$ Ringen und für die Distanz von $\pm 2 \,nm$ erhält man mit der Formel \ref{eq:4.1.1}: $\Delta \lambda= 130 \, nm$.  Also $500 \, nm \pm 130 \,nm$.
 
@@ -280,11 +280,9 @@ Laut Anleitung soll bei dieser Messung die Eichung aus Abschnitt \ref{laser_mess
  
 Na-Dampflampen senden Licht mit den Wellenlängen $589.0$ nm und $589.6$ nm aus, der Mittelwert ist somit $589.3$ nm. Der gemessene Wert liegt damit etwa $15 \,\%$ darunter, der Literaturwert liegt aber gerade noch innerhalb des Fehlerintervalls von $408$ nm bis $592$ nm. Da beide Einzelmessungen zu kleine Werte liefern, deutet das auf einen systematischen Fehler hin. Bei $589.3$ nm würden $50$ Interferenzstreifen einer Spiegelverschiebung von ca. $14.7 \, \mu m$ entsprechen, abgelesen wurden aber nur $12$ bzw. $13 \, \mu m$. Wahrscheinlich wurden wegen des schwachen Kontrasts (siehe Abbildung \ref{fig:na_ringe}) und der Vibrationen zu viele Streifen gezählt. Aufgrund der nur zwei Messungen lässt sich dieser Fehler allerdings nicht weiter eingrenzen.
 
-
 Die Kohärenzlänge wird später in Abschnitt \ref{kohaerenzlaenge_dampflampe} behandelt.
 
 \subsection{Spektraler Abstand benachbarter Linien} \label{spektraler_abstand}
-
 
 Da die Natriumlampe nicht wie der Laser monochromatisch ist, sondern bei zwei Wellenlängen Licht ausstrahlt, gibt es nicht nur eine Interferenz, sondern ein Interferenzpaar. Bei passender Wegdifferenz, die durch das Verstellen der Differentialschraube erreicht werden kann, ist das durch ein deutlich stärkeres Interferenzmuster zu erkennen, da beide Interferenzen zusammenfallen. Hier soll nun die Differenz der Wellenlänge dieser Doppellinie ermittelt werden. Nun wurde der Messtisch solange verschoben,  bis das Interferenzmuster schwächer und dann wieder scharf wurde. Seien die beiden Wellenlängen: $\lambda_{1}$ und $\lambda_{2}$. Bei diesem Zusammenfallen stehen die Wellenlängen im Verhältnis: 
 
@@ -385,7 +383,7 @@ Demtröder, W. (2016).
 \textit{Experimentalphysik 3}
 
 \bibitem{anleitung}
-Söllner, E., H. Michor  (2007).
+Söllner, E., H. Michor (2007).
 \textit{Interferometrie}
 
 
