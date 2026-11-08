@@ -250,7 +250,7 @@ Im Vergleich zu den Messungen mit dem Laserlicht in Abschnitt \ref{laser_messung
 
 Es war zusätzlich eine Herausforderung, die Interferenzringe zu zählen, denn wie in \ref{fig:na_ringe} zu sehen ist sind diese nur sehr schwach erkennbar.
 
-Natriumdampf-Lampen senden Licht mit den Wellenlängen $\lambda = 589 \text{ \& } 589,6 \, nm$ aus. Nimmt man nun für die gezählten Ringe einen Fehler von $\pm 5$ Ringen und für die Distanz von $\pm 2 \,nm$ erhält man mit der Formel \ref{eq:4.1.1}: $\Delta \overline{ \lambda}= 91.93 \, nm$. Also 500 nm $\pm$ 92 nm.
+Natriumdampf-Lampen senden Licht mit den Wellenlängen $\lambda = 589 \text{ \& } 589,6 \, $nm aus. Nimmt man nun für die gezählten Ringe einen Fehler von $\pm 5$ Ringen und für die Distanz von $\pm 2 $ nm erhält man mit der Formel \ref{eq:4.1.1}: $\Delta \overline{ \lambda}= 91.93$ nm. Also 500 nm $\pm$ 92 nm.
 
 % errechnete lambda: 520 und 480
 
@@ -260,7 +260,18 @@ Natriumdampf-Lampen senden Licht mit den Wellenlängen $\lambda = 589 \text{ \& 
 \label{fig:na_ringe}
 \end{figure}
 
-Wellenlänge TODO
+Mit Formel \ref{eq:4.1.1} und den Messwerten aus Tabelle \ref{tab:natriumwellenlänge} erhält man für die beiden Messungen:
+ 
+\begin{equation}
+\label{eq:4.3.1}
+\lambda_1 = \frac{2 \cdot 13 \, \mu m}{50} = 520 \, nm \qquad \lambda_2 = \frac{2 \cdot 12 \, \mu m}{50} = 480 \, nm
+\end{equation}
+ 
+Der Mittelwert beträgt $\bar{\lambda} = 500$ nm, mit dem oben abgeschätzten Fehler also $\lambda = 500 \pm 92$ nm. Da der Abstand der beiden D-Linien von ca. $0.6$ nm viel kleiner als dieser Fehler ist, kann die Doppellinie bei dieser Messung nicht aufgelöst werden, man erhält somit die mittlere Wellenlänge beider Linien.
+ 
+Laut Anleitung soll bei dieser Messung die Eichung aus Abschnitt \ref{laser_messung} verwendet werden. Der gemessene Mittelwert für den Laser von $636.7$ nm liegt um den Faktor $632.8 / 636.7 \approx 0.994$ über dem Literaturwert, die abgelesene Distanz der Differential-Schraube ist also im Mittel um ca. $0.6 \,\%$ zu groß. Mit dieser Korrektur erhält man $517$ nm und $477$ nm, also einen Mittelwert von $497$ nm. Diese Änderung ist im Vergleich zum Fehler von $\pm 92$ nm vernachlässigbar.
+ 
+Na-Dampflampen senden Licht mit den Wellenlängen $589.0$ nm und $589.6$ nm aus, der Mittelwert ist somit $589.3$ nm. Der gemessene Wert liegt damit etwa $15 \,\%$ darunter, der Literaturwert liegt aber gerade noch innerhalb des Fehlerintervalls von $408$ nm bis $592$ nm. Da beide Einzelmessungen zu kleine Werte liefern, deutet das auf einen systematischen Fehler hin. Bei $589.3$ nm würden $50$ Interferenzstreifen einer Spiegelverschiebung von ca. $14.7 \, \mu m$ entsprechen, abgelesen wurden aber nur $12$ bzw. $13 \, \mu m$. Wahrscheinlich wurden wegen des schwachen Kontrasts (siehe Abbildung \ref{fig:na_ringe}) und der Vibrationen zu viele Streifen gezählt. Aufgrund der nur zwei Messungen lässt sich dieser Fehler allerdings nicht weiter eingrenzen.
 
 Die Kohärenzlänge wird später in Abschnitt \ref{kohaerenzlaenge_dampflampe} behandelt.
 
@@ -328,7 +339,7 @@ Die Breite der einzelnen Linien ist damit deutlich kleiner als der Abstand der b
 
 \subsection{Visualisierung der Werteverteilungen (Laser)} \label{gauss_visualisation}
 
-Die Messwerte bei der Messung der Wellenlänge des He-Ne-Laserlichts können statistisch mit einer Gauss-Verteilung visualisiert werden. Dafür muss die Standardabweichung $\sigma$, der Mittelwert $\bar{x}$ und dessen Fehler errechnet werden:
+Die Messwerte bei der Messung der Wellenlänge des He-Ne-Laserlichts können statistisch mit einer Gauß-Verteilung visualisiert werden. Dafür muss die Standardabweichung $\sigma$, der Mittelwert $\bar{x}$ und dessen Fehler errechnet werden:
 
 \begin{equation}
   \bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i \approx 636.7 \, nm
