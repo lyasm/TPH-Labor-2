@@ -7,10 +7,10 @@
   11pt,
   parskip=full,
   listof=flat,
-  numbers=noenddot,
   bibliography=totoc,
   a4paper,
   DIV=14,
+  BCOR=22mm,
   headheight=5mm,
   headinclude=true,
 ]{scrartcl}
@@ -19,6 +19,8 @@
 % \usepackage{titlesec}
 \usepackage{float}
 \usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -26,6 +28,9 @@
 \usepackage{relsize}
 \usepackage{lastpage}
 \usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 % \input{glyphtounicode}
 % \pdfgentounicode=1
@@ -49,35 +54,381 @@
 \ifoot{\smaller{David Koch, Paul Vetter}}
 \ofoot{Seite \pagemark/\pageref{LastPage}}
 
-\title{Laborprotokoll Interferometrie}
+\title{Laborprotokoll Optik}
 \author{David Koch, Paul Vetter}
 \date{}
 
 \begin{document}
-\cleardoubleoddpage
 
-\begin{titlepage} 
-\maketitle 
-\tableofcontents 
+\begin{titlepage}
+\maketitle
+\tableofcontents
 \end{titlepage}
 
-\begin{titlepage} \maketitle \tableofcontents \end{titlepage}
-\pagenumbering{arabic}
+\setcounter{page}{2}
+\renewcommand{\thepage}{\the\numexpr\value{page}-1\relax}
 
-\section{Aufbau}
-Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Projektions-Michelson-Interferometer verwendet. Zur vertikalen und horizontalen Zentrierung im Eingang des Interferometers dienten zwei kippbarejustierbare Spiegel und zwei Blenden. Sowie einige Linsen und ein Objektiv, siehe Tabelle \ref{tab:linsen}.
+\section{Bestimmung der Brennweite einer Linse}
+
+Eine Tabelle mit Messwerten für a1, a2, c, b1, b2 für drei verschiedene Abstände c:
 
 \begin{table}[H]
   \centering
   \setlength{\tabcolsep}{10pt}
-  \begin{tabular}{ |c|c| }
-    \multicolumn{1}{c}{Linse}  & \multicolumn{1}{c}{Brennweite (mm)} \\
-    M & 0.65\\
-    K & 80 \\
-    Ob & 160 \\
-    Z & 50 \\
-    F & 20 \\
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{c (mm)} & \multicolumn{1}{c}{$a_1 = b_2$ (mm)} & \multicolumn{1}{c}{$a_2 = b_1$ (mm)} \\
+    140 & 104 & 33 \\
+    115 & 73 & 45 \\
+    124 & 82 & 40 \\
   \end{tabular}
-  \caption{Verwendete Linsen}
+  \caption{Messwerte Brennweitenbestimmung}
   \label{tab:linsen}
 \end{table}
+
+Die Abschätzung der Messunsicherheiten für alle gemessenen Werte:
+
+Für alle gemessenen Strecken wird eine Ableseunsicherheit von $\pm 1\,mm$ angenommen.
+
+\[
+\Delta a_1 = \Delta a_2 = \Delta c = \pm 1\,mm
+\]
+
+Die Ermittlung der Brennweite f mittels Bessel-Verfahren:
+
+$$ f = \frac{a \cdot b}{a+b} = \frac{c^2 - (b-a)^2}{4 \cdot c} $$
+$$ \Rightarrow f_1 = \frac{140^2-(104-33)^2}{4 \cdot 140} \approx 26.0\,mm $$
+$$ \Rightarrow f_2 = \frac{115^2-(73-45)^2}{4 \cdot 115} \approx 27.8\,mm $$
+$$ \Rightarrow f_3 = \frac{124^2-(82-40)^2}{4 \cdot 124} \approx 27.9\,mm $$
+
+Die mittlere Brennweite beträgt:
+
+$$ \overline{f} = \frac{f_1+f_2+f_3}{3} = \frac{26.0+27.8+27.9}{3} \approx 27.2\,mm $$
+
+Die Unsicherheit der Brennweite wird durch gaußsche Fehlerfortpflanzung bestimmt:
+
+$$
+\Delta f =
+\sqrt{
+\left(\frac{\partial f}{\partial a}\Delta a\right)^2+
+\left(\frac{\partial f}{\partial b}\Delta b\right)^2
+}
+$$
+
+$$
+\frac{\partial f}{\partial a}
+= \frac{b^2}{(a+b)^2}
+\qquad
+\frac{\partial f}{\partial b}
+= \frac{a^2}{(a+b)^2}
+$$
+
+Damit ergibt sich für jede Messung:
+
+$$\Delta f_1 \approx 0.7\,mm$$
+$$\Delta f_2 \approx 0.7\,mm$$
+$$\Delta f_3 \approx 0.7\,mm$$
+
+Die mittlere Brennweite beträgt somit näherungsweise:
+
+$$
+f = (27.2 \pm 0.7)\,mm
+$$
+
+Die Linse hatte tatsächlich eine Brennweite von $f = 25 \, mm$, somit liegt sie nicht im Fehlerintervall der gemessenen bzw. errechneten Brennweite. Gegebenenfalls hätte man mit einer höheren Messungenauigkeit beim Ablesen der Linsenabstände rechnen sollen, mit einer Ableseunsicherheit von $\approx \pm 3\,mm$ wäre die Fehlerabschätzung passender gewesen. 
+
+Das Diagramm für die graphische Lösung der Abbildungsgleichung. Erklären Sie dabei auch, warum bei der graphischen Lösung die Seitenlänge des Quadrates ODCE gleich der Brennweite f sein muss:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xlabel={$a$ (mm)},
+    ylabel={$b$ (mm)},
+    xmin=0, xmax=115,
+    ymin=0, ymax=115,
+    width=12cm,
+    height=12cm,
+    axis equal image,
+    grid=major,
+    samples=100
+]
+
+% Messung 1
+\addplot[blue, thick] coordinates {(0,33) (104,0)};
+
+% Messung 2
+\addplot[green!60!black, thick] coordinates {(0,45) (73,0)};
+
+% Messung 3
+\addplot[orange, thick] coordinates {(0,40) (82,0)};
+
+% Winkelhalbierende
+\addplot[dotted, gray, thick, domain=0:110] {x};
+
+\addplot[orange, thick, dashed] coordinates {(0,82) (40,0)};
+\addplot[green!60!black, thick, dashed] coordinates {(0,73) (45,0)};
+\addplot[blue, thick, dashed] coordinates {(0,104) (33,0)};
+
+% Schnittpunkte
+\addplot[only marks, mark=*, mark size=2pt, black]
+coordinates {
+    (25.04,25.04)
+    (27.84,27.84)
+    (26.89,26.89)
+};
+
+% Beschriftungen
+\node[above right] at (axis cs:25.04,25.04) {$C_3$};
+\node[above right] at (axis cs:27.84,27.84) {$C_2$};
+\node[below left] at (axis cs:26.89,26.89) {$C_1$};
+
+% Legende
+\addlegendimage{blue, thick}
+\addlegendentry{Messung 1}
+\addlegendimage{green!60!black, thick}
+\addlegendentry{Messung 2}
+\addlegendimage{orange, thick}
+\addlegendentry{Messung 3}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Graphische Bestimmung der Brennweite anhand der drei Messungen}
+\label{fig:brennweite_graphisch}
+\end{figure}
+
+Da die Messungen nicht perfekt sind und somit die Linien sich nicht alle genau auf der $a=b$-Linie schneiden, kann kein eindeutiges Brennweiten-Viereck eingezeichnet werden. Man sieht aber die jeweiligen Brennweiten, und, dass die Brennweiten alle über den richtigen Wert von $f = 25 \, mm$ hinaus gehen. Die erste Messung ist offensichtlich die akkurateste gewesen, den C1 liegt beinahe bei $a = b = 25 \, mm$.
+
+\section{Mikroskop}
+
+Die zwei gemessenen Objektiv-Okular Abstände und die jeweils ermittelte Vergrößerung:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Okularabstand (mm)} & \multicolumn{1}{c}{Striche im Mikroskop} & \multicolumn{1}{c}{Abstand auf Maßstab (mm)} \\
+    98 & $5 \pm 1$ & 20 \\
+    57 & $10 \pm 1$ & 20 \\
+  \end{tabular}
+  \caption{Messwerte Mikroskop-Vergrößerung}
+  \label{tab:linsen}
+\end{table}
+
+Aufgrund unserer schlechten Augen ist die gleichzeitige Beobachtung des Mikroskops und des Maßstabs recht schwierig gewesen. Der Fehler wurde auf die Striche im Mikroskop gewichtet, da der Abstand auf dem Maßstab konstant gehalten worden ist.
+
+Die Berechnung der Vergrößerung für die zwei verschiedenen Objektiv-Okular-Abstände d. Vergleichen Sie die berechneten mit den gemessenen Vergrößerungen:
+
+Die Vergrößerung ergibt sich aus dem Verhältnis des Maßstabsabstands zur Anzahl der gezählten Striche:
+
+$$
+V_1 = \frac{20}{5} = 4
+$$
+$$
+V_2 = \frac{20}{10} = 2
+$$
+
+Da der Maßstabsabstand konstant gehalten wurde, ergibt sich der relative Fehler ausschließlich aus der Strichablesung:
+
+$$
+\frac{\Delta V}{V} = \frac{\Delta n}{n}
+$$
+$$
+\Rightarrow \Delta V_1 = 4 \cdot \frac{1}{5} = 0.8
+$$
+$$
+\Rightarrow \Delta V_2 = 2 \cdot \frac{1}{10} = 0.2
+$$
+
+Das heißt die Vergrößerung sind $V_1 = 4 \pm 0.8$ und $V_2 = 2 \pm 0.2$.
+
+\section{Fernrohr}
+
+Die Gegenüberstellung der von Ihnen gemessenen Linsenabstände mit den berechneten Abständen für zwei unterschiedliche Gegenstandsweiten:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Objekt} & \multicolumn{1}{c}{Grobe Distanz (m)} & \multicolumn{1}{c}{Linsenabstand (cm)} \\
+    Geländer am Dach & 10 & $18.6 \pm 0.3$ \\
+    Metallkonstrukt im Labor & 3 & $19.7 \pm 0.3$ \\
+  \end{tabular}
+  \caption{Gemessene Linsenabstände}
+  \label{tab:linsen}
+\end{table}
+
+Linsenabstände Rechnung:
+$$ \frac{1}{f_{Ob}} = \frac{1}{g} + \frac{1}{b} $$
+$$ L = \frac{f_{Ob} \cdot g}{g - f_{Ob}} + f_{Okular} $$
+$$ g_1 = 10 \, m \Rightarrow L_1 = 187.6 \, mm $$
+$$ g_1 = 3 \, m \Rightarrow L_2 = 194 \, mm $$
+
+Beide der errechneten Linsenabstände sind im Fehlerintervall der Messung enthalten, passt soweit.
+
+Der mittels Kepler-Fernrohr ermittelte Messwert für die Breite der Bibliotheks-Fassadenplatte und die Berechnung der tatsächlichen Plattenbreite. Gehen Sie davon aus, dass der Normalabstand zwischen Fensterfront des Labors und Bibliotheksaußenwand 18,59 m beträgt:
+
+Messung mit Fernrohr:
+\begin{itemize}
+  \item Breite $a' = 15.5$ (große) Striche
+  \item Breite $b' = 13.2$ (große) Striche
+\end{itemize}
+
+$$ \frac{10 \, mm}{200} = 0.05 \, mm $$
+$$ \Rightarrow a' = 155 \cdot 0.05 \, mm = 7.75\,mm $$
+$$ \Rightarrow b' = 132 \cdot 0.05 \, mm = 6.6\,mm $$
+
+$$ a = \frac{a' \cdot (g - f_{Ob})}{f_{Ob}} = \frac{7.75\,mm \cdot (18.59\,m - 160\,mm)}{160\,mm} \approx 0.892 \, m $$
+$$ b = \frac{b' \cdot (g - f_{Ob})}{f_{Ob}} = \frac{6.6\,mm \cdot (18.59\,m - 160\,mm)}{160\,mm} \approx 0.76 \, m $$
+
+\textbf{Fehlerschätzung:}
+
+Bei einer Ableseunsicherheit von $\pm 1$ Strich ergibt sich für die relativen Fehler:
+
+\[
+\frac{\Delta a}{a} =
+\sqrt{\left(\frac{1}{155}\right)^2}
+\approx 0.00645
+\]
+\[
+\frac{\Delta b}{b} =
+\sqrt{\left(\frac{1}{132}\right)^2}
+\approx 0.00758
+\]
+
+Damit ergeben sich die absoluten Unsicherheiten zusätzlich zu den Plattenbreiten:
+
+\[
+\Delta a = 0.893 \cdot 0.00645
+\approx 0.006\,m
+\Rightarrow (0.893 \pm 0.006)\,m
+\]
+\[
+\Delta b = 0.760 \cdot 0.00758
+\approx 0.006\,m
+\Rightarrow (0.760 \pm 0.006)\,m
+\]
+
+
+Die Berechnung der Vergrößerung des Kepler- und des Galilei-Fernrohrs. Beobachten Sie den Unterschied in der Abbildung zwischen den beiden Fernrohren und erklären Sie, warum sich das Kepler-Fernrohr durchgesetzt hat:
+
+Vergleich Fernrohre Kepler/Galilei:
+\begin{itemize}
+  \item Kepler: Vergrößerung bleibt bei für unterschiedlichem Linsenabstand "gleich", der Linsenabstand steuert nur wie Scharf das Bild ist. Zusätzlich wird für weiter entfernte Objekte einen kleiner werdender Linsenabstand genommen, bei Galilei bräuchte man einen wachsenden Linsenabstand.
+  \item Galilei: Nur der Mittelpunkt des Bildes zeigt tatsächlich das gewünschte vergrößerte Objekt, der Rest ist unscharf und unbrauchbar. Bezüglich der Proportionalität von Linsenabstand zu Vergrößerung siehe Punkt Kepler, Vergrößerung skaliert mit Linsenabstand. 
+\end{itemize}
+
+\section{Zoom-Objektiv}
+
+Die Bestimmung der relativen Vergrößerung aus kleinster und gröÿter Abbildung durch Messung der Breite (oder Höhe) $x_{d_1}$ des TU-Logos bei den zwei extremen Zoom-Positionen $d_1 = 0 \, mm$ und $d_1 \approx 50 \, mm$. $V_{rel} = \frac{x \cdot d_1 = 50 \, mm}{x \cdot d_1 = 0 \, mm}$:
+
+$$ x_{d_1} = 50 \, mm \Rightarrow 12 \pm 1 \, \text{Striche} $$
+$$ x_{d_1} = 0 \, mm \Rightarrow 8 \pm 1 \, \text{Striche} $$
+
+$$ V_{rel} = \frac{x \cdot d_1 = 50 \, mm}{x \cdot d_1 = 0 \, mm} = \frac{12 \pm 1}{8 \pm 1} $$
+
+\[
+\frac{\Delta V_{rel}}{V_{rel}}
+=
+\sqrt{
+\left(\frac{\Delta x_1}{x_1}\right)^2
++
+\left(\frac{\Delta x_2}{x_2}\right)^2
+}
+\]
+
+\[
+\frac{\Delta V_{rel}}{V_{rel}}
+=
+\sqrt{
+\left(\frac{1}{12}\right)^2
++
+\left(\frac{1}{8}\right)^2
+}
+\]
+
+\[
+= \sqrt{0.00694 + 0.015625}
+\approx 0.1502
+\]
+
+Absoluter Fehler:
+
+\[
+\Delta V_{rel} = 1.5 \cdot 0.1502
+\]
+\[
+\Delta V_{rel} = 0.225 \approx 0.23 \Rightarrow V_{rel} = 1.50 \pm 0.23
+\]
+
+Relativer Fehler:
+
+\[
+\frac{\Delta V_{rel}}{V_{rel}} \cdot 100
+= 15{,}02\,\%
+\]
+
+Die Berechnung der relativen Vergrößerung durch das Zoom-Objektiv. Vergleichen Sie das Ergebnis mit der Messung. $V_{rel} = \frac{M \cdot d_1 = 50 \, mm}{M \cdot d_1 = 0 \, mm}$:
+
+\begin{equation}
+  M_\mathrm{ges} = M_{L_1 L_2} \cdot M_{L_3 L_4}(d_1) \cdot M_{L_5 L_6}
+\end{equation}
+Da sich mit $d_1$ auch die Lage des vom Zoompaar erzeugten Bildes ändert, hängt auch $M_{L_5 L_6}$ von $d_1$ ab. Nur $M_{L_1 L_2}$ kürzt sich im Verhältnis heraus:
+\begin{equation}
+  V_\mathrm{rel} = \frac{M_{d_1=50\,\mathrm{mm}}}{M_{d_1=0\,\mathrm{mm}}}
+                 = \frac{(M_{L_3 L_4} \cdot M_{L_5 L_6})(50\,\mathrm{mm})}{(M_{L_3 L_4} \cdot M_{L_5 L_6})(0\,\mathrm{mm})}
+\end{equation}
+ 
+Mit $f_1 = 80\,mm$, $f_2 = 250\,mm$, $f_3 = -40\,mm$, $f_4 = 80\,mm$, $f_5 = 200\,mm$, $f_6 = 60\,mm$ und dem Abstand $e = 20\,mm$ der Zoomlinsen (Stangenlänge) wird stufenweise mit dünnen Linsen abgebildet ($g < 0$ für virtuelle Gegenstände):
+$$ \frac{1}{b} = \frac{1}{f} - \frac{1}{g}, \qquad M = -\frac{b}{g} $$
+ 
+\begin{enumerate}
+  \item Stufe $\frac{L_1}{L_2}$: Der Gegenstand liegt bei $g = f_1$, hinter $L_1$ ist das Licht parallel, $L_2$ erzeugt das Zwischenbild bei $b = f_2 = 250\,mm$ hinter $L_2$ mit $M_{L_1 L_2} = -\frac{250}{80} = -3.125$
+  \item Dieses Zwischenbild ist ein virtueller Gegenstand für $L_3$: $g_3 = -(250\,mm - d_1)$. Die weiteren Stufen ergeben:
+\end{enumerate}
+ 
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabular}{ |c|ccc|ccc| }
+    & \multicolumn{3}{c|}{$d_1 = 0\,mm$} & \multicolumn{3}{c|}{$d_1 = 50\,mm$} \\
+    Linse & $g$ (mm) & $b$ (mm) & $M$ & $g$ (mm) & $b$ (mm) & $M$ \\
+    \hline
+    $L_3$ & $-250.0$ & $-47.6$ & $-0.190$ & $-200.0$ & $-50.0$ & $-0.250$ \\
+    $L_4$ & $67.6$ & $-436.9$ & $6.462$ & $70.0$ & $-560.0$ & $8.000$ \\
+    $L_5$ & $486.9$ & $339.4$ & $-0.697$ & $560.0$ & $311.1$ & $-0.556$ \\
+    $L_6$ & $-339.4$ & $51.0$ & $0.150$ & $-311.1$ & $50.3$ & $0.162$ \\
+  \end{tabular}
+  \caption{Stufenweise Abbildung durch das Zoom-Objektiv}
+  \label{tab:zoom}
+\end{table}
+ 
+$$ M_{d_1=0} = -3.125 \cdot (-0.190) \cdot 6.462 \cdot (-0.697) \cdot 0.150 \approx -0.403 $$
+$$ M_{d_1=50} = -3.125 \cdot (-0.250) \cdot 8.000 \cdot (-0.556) \cdot 0.162 \approx -0.561 $$
+$$ V_{rel} = \frac{0.561}{0.403} \approx 1.39 $$
+
+\textbf{Vergleich mit Messung}
+
+Der errechnete Wert von $V_{rel} \approx 1.39$ liegt im Fehlerintervall von der Messung $V_{rel} = 1.50 \pm 0.23$, passt soweit.
+
+Eine kurze Beschreibung ob sich außer der Helligkeit noch etwas an der Abbildung ändert wenn Sie den Blendendurchmesser variieren. Erklären Sie, warum/warum nicht:
+
+\begin{itemize}
+  \item Die Vergrößerung ändert sich nicht, da sie nur von den Brennweiten und Abständen abhängt
+  \item Es ändert sich die Schärfe und die Randabdunklung wegen der Brechung an der Blende
+\end{itemize}
+
+\section{Design einer optischen Abbildung}
+
+Aufgrund von Zeitmangel konnte der Aufbau dieses Kapitels nicht durchgeführt werden. Nach einer Absprache mit dem Tutor wurde beschlossen, dass als Ersatz die Variante C durchgerechnet werden soll.
+
+\textbf{Variante C}: Die Summe c aus Gegenstandsweite a und Bildweite b beträgt 121,5 mm, der gewünschte Abbildungsmaßstab M beträgt -2.
+
+$$ M = -\frac{b}{a} \Rightarrow -2 = -\frac{b}{a} \Rightarrow 2 \cdot a = b $$
+$$ a + b = a + 2 \cdot a = 121.5 \, mm \Rightarrow a = \frac{121.5 \, mm}{3} = 40.5 \, mm $$
+$$ b = 2 \cdot a = 2 \cdot 40.5 \, mm = 81 \, mm $$
+
+$$ \frac{1}{f} = \frac{1}{a} + \frac{1}{b} = \frac{1}{40.5} + \frac{1}{81} \Rightarrow f = \frac{40.5 \cdot 81}{121.5} = 27 \, mm $$
+  
+
+\end{document}
