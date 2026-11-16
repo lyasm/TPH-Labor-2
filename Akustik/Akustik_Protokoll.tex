@@ -1,0 +1,151 @@
+\documentclass[
+  headings=optiontotocandhead,
+  twoside,
+  openright,
+  numbers=noenddot,
+  toc=flat,
+  11pt,
+  parskip=full,
+  listof=flat,
+  bibliography=totoc,
+  a4paper,
+  DIV=14,
+  BCOR=22mm,
+  headheight=5mm,
+  headinclude=true,
+]{scrartcl}
+
+% \usepackage{fontspec}
+% \usepackage{titlesec}
+\usepackage{float}
+\usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{relsize}
+\usepackage{lastpage}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% \input{glyphtounicode}
+% \pdfgentounicode=1
+
+\clubpenalty = 1000 % Schusterjungen verhindern
+\widowpenalty = 1000 % Hurenkinder verhindern
+\displaywidowpenalty = 1000
+
+\graphicspath{{./assets/}{./plotting/}}
+
+\newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{TU_Logo_RGB}}
+\newcommand{\kopftitel}{\sffamily{\textbf{\large{Laborprotokoll Optik}}}}
+
+\usepackage[automark,footsepline,plainfootsepline]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
+\setkomafont{pagenumber}{\normalfont\normalsize}
+\clearpairofpagestyles
+\ihead{\headmark}
+\ihead{\kopfbild}
+\ohead{\kopftitel}
+\ifoot{\smaller{David Koch, Paul Vetter}}
+\ofoot{Seite \pagemark/\pageref{LastPage}}
+
+\title{Laborprotokoll Akustik}
+\author{David Koch, Paul Vetter}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\tableofcontents
+\end{titlepage}
+
+\setcounter{page}{2}
+\renewcommand{\thepage}{\the\numexpr\value{page}-1\relax}
+
+\section{Vorbereitung/Aufbau}
+
+Am Funktionsgenerator wurden folgende Werte eingestellt:
+
+\begin{itemize}
+  \item Frequenzbereich: 300kHz
+  \item Funktion: Sinuswelle
+  \item Attenuator: -20dB
+  \item Frequenz: 39,87kHz
+  \item Amplitude: 0.41V
+  \item Peak-Peak
+\end{itemize}
+
+Die Amplitude wurde dementsprechend niedrig gewählt, da bei kleinen Distanzen zwischen Sender und Empfänger während den ersten Versuchen das abgebildete Signal auf dem Oszilloskop abgeschnitten worden ist mit ca. 1V Amplitude.
+
+\section{Akustische Wellen – Messung der Wellenlänge, Schallgeschwindigkeit}
+
+\subsection{Amplitudenveränderungen (stehende Welle)}
+
+Eine Tabelle mit Messwerten für den Abstand zwischen Sender und Empfänger, jeweils pro Maximum:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Position E (mm)} & \multicolumn{1}{c}{Position S (mm)} \\
+    100 & 223 \\
+    100 & 231 \\
+    100 & 240 \\
+    100 & 250 \\
+    100 & 258 \\
+  \end{tabular}
+  \caption{Messwerte Wellenlängenbestimmung mittels Amplitudenmaxima}
+  \label{tab:wellenlaenge1}
+\end{table}
+
+Die errechnete Wellenlänge ergibt mit $f \approx 40$kHz, $c \approx 333$ m/s:
+$$ \lambda = \frac{c}{f} \approx \frac{333}{40 \cdot 10^3} \approx 8.325 mm $$
+
+Wenn man die gemessenen Abstände zwischen Sender und Empfänger über alle 5 Maxima mittelt (mit $n-1$) und beachtet, dass es jeweils ein Maximum pro Wellenlänge gibt, erhält man die gemessene Wellenlänge von
+$$ \frac{258 - 223}{5 - 1} = \frac{35}{4} \approx 8.75mm $$ 
+
+Bei der Umpositionierung des Senders können einige Messfehler auftreten, wie z.B. das falsche Ablesen der derzeitigen Position auf der Längenskala oder die unabsichtliche Umpositionierung um einige Bruchteile eines Millimeters aufgrund von zittrigen Händen oder Unachtsamkeit.
+
+Somit kommt auf einen Fehler von $\pm 1mm$ pro Messwert, was durch Fehlerrechnung TODO
+
+\subsection{Phasenänderung mittels Lissajous-Figuren}
+
+Der Aufbau vom ersten Experiment wurde übernommen und das Oszilloskop wurde in den XY-Anzeigemodus gewechselt.
+
+Anschließend wurden erneut Messungen der Wellenlänge durchgeführt, diesmal wurde anhand des Phasenübergangs bei jeweils $\pi/2$, also bei einer diagonalen Linie am Oszilloskop, gemessen.
+$$ \lambda = \frac{2 \cdot d}{n} $$
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Position E (mm)} & \multicolumn{1}{c}{Position S (mm)} \\
+    100 & 223 \\
+    100 & 231 \\
+    100 & 240 \\
+    100 & 250 \\
+    100 & 258 \\
+  \end{tabular}
+  \caption{Messwerte Wellenlängenbestimmung mittels Lissajous-Figuren}
+  \label{tab:wellenlaenge2}
+\end{table}
+
+\subsection{Fragen zum Kapitel}
+
+Frage: Welche der beiden Messmethoden 3.1.1 und 3.1.2 ist die genauere experimentelle Methode zur
+Ermittlung der Wellenlänge/Schallgeschwindigkeit?
+
+FÜr uns war die Messung mittels Lissajous-Figuren genauer, denn der Phasenübergang konnte aufgrund der diagonalen Linie als Figur gut erkannt werden, beim ersten Experiment konnte der Amplitundenunterschied nicht immer perfekt erkannt werden. Somit kam es zu Messungenauigkeiten aufgrund der falschen Erkennung der Maxima (bei der ersten Messmethode).
+
+Was sind Vor-, bzw. Nachteile der jeweiligen Messmethode? Vergleichen Sie das bessere Ergebnis mit
+Literaturwerten. Geben Sie ihre Abweichung an und begründen Sie!
+
+TODO
+
+\end{document}
