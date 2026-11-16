@@ -31,6 +31,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
 
 % \input{glyphtounicode}
 % \pdfgentounicode=1
@@ -112,7 +114,11 @@ $$ \frac{258 - 223}{5 - 1} = \frac{35}{4} \approx 8.75mm $$
 
 Bei der Umpositionierung des Senders können einige Messfehler auftreten, wie z.B. das falsche Ablesen der derzeitigen Position auf der Längenskala oder die unabsichtliche Umpositionierung um einige Bruchteile eines Millimeters aufgrund von zittrigen Händen oder Unachtsamkeit.
 
-Somit kommt auf einen Fehler von $\pm 1mm$ pro Messwert, was durch Fehlerrechnung TODO
+Somit kommt auf einen Fehler von $\pm 1mm$ pro Messwert, was durch Fehlerrechnung (Gauß'sche Fehlerfortpflanzung, nur erster und letzter Messwert gehen ein) folgende Unsicherheit ergibt:
+$$ \Delta\lambda = \frac{\sqrt{(\Delta s)^2 + (\Delta s)^2}}{4} = \frac{\sqrt{2} \cdot 1}{4} \approx 0.35\,mm $$
+$$ \Rightarrow \lambda = (8.75 \pm 0.35)\,mm $$
+
+Der theoretische Wert von $8.325\,mm$ liegt knapp außerhalb dieses Intervalls. Das deutet auf einen zusätzlichen systematischen Fehler hin, z.B. eine ungenaue Lage der Maxima oder eine abweichende Schallgeschwindigkeit wegen der Raumtemperatur.
 
 \subsection{Phasenänderung mittels Lissajous-Figuren}
 
@@ -124,28 +130,349 @@ $$ \lambda = \frac{2 \cdot d}{n} $$
 \begin{table}[H]
   \centering
   \setlength{\tabcolsep}{10pt}
-  \begin{tabular}{ |c|c| }
-    \multicolumn{1}{c}{Position E (mm)} & \multicolumn{1}{c}{Position S (mm)} \\
-    100 & 223 \\
-    100 & 231 \\
-    100 & 240 \\
-    100 & 250 \\
-    100 & 258 \\
+  \begin{tabular}{ |c|c|c|c|c| }
+    \multicolumn{1}{c}{Position S (mm)} & \multicolumn{1}{c}{Position E (mm)} & \multicolumn{1}{c}{d (mm)} & \multicolumn{1}{c}{$\Sigma$ n} & \multicolumn{1}{c}{$\approx \lambda$ (mm)} \\
+    161 & 211 & 50 & 12 & 8.33 \\
+    135 & 201 & 66 & 15 & 8.8 \\
+    142 & 205 & 63 & 15 & 8.4 \\
+    170 & 223 & 53 & 13 & 8.25 \\
+    222 & 178 & 44 & 10 & 8.8 \\
   \end{tabular}
   \caption{Messwerte Wellenlängenbestimmung mittels Lissajous-Figuren}
   \label{tab:wellenlaenge2}
 \end{table}
+
+Mittelt man diese 5 Messwerte, erhält man eine Wellenlänge von
+$$ \overline{\lambda} = \frac{8.33 + 8.8 + 8.4 + 8.25 + 8.8}{5} \approx 8.49 \,mm $$
+
+Eingesetzt mit der bekannten/eingestellten Frequenz von $f = 39.87$ kHz erhält man für die Lichtgeschwindigkeit:
+$$ c = \lambda \cdot f = 8.49 \cdot 10^{-3} \cdot 39.87 \cdot 10^3 \approx 338.49\, m/s $$ 
+
+Fehlerrechnung: Als Unsicherheit wird die Standardabweichung des Mittelwerts verwendet:
+$$ s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(\lambda_i - \overline{\lambda})^2} \approx 0.29\,mm, \qquad
+   \Delta\overline{\lambda} = \frac{s}{\sqrt{n}} = \frac{0.29}{\sqrt{5}} \approx 0.13\,mm $$
+$$ \Rightarrow \overline{\lambda} = (8.50 \pm 0.13)\,mm $$
+
+Da die Frequenz am Generator eingestellt ist und ihr Fehler vernachlässigbar ist, überträgt sich der
+relative Fehler direkt auf $c$:
+$$ \Delta c = c \cdot \frac{\Delta\overline{\lambda}}{\overline{\lambda}} = 338.8 \cdot \frac{0.13}{8.50} \approx 5.2\,m/s $$
+$$ \Rightarrow c = (339 \pm 5)\,m/s $$
+
+Der Literaturwert ($\approx 343\,m/s$ bei $20^\circ$C) liegt innerhalb dieses Fehlerintervalls.
 
 \subsection{Fragen zum Kapitel}
 
 Frage: Welche der beiden Messmethoden 3.1.1 und 3.1.2 ist die genauere experimentelle Methode zur
 Ermittlung der Wellenlänge/Schallgeschwindigkeit?
 
-FÜr uns war die Messung mittels Lissajous-Figuren genauer, denn der Phasenübergang konnte aufgrund der diagonalen Linie als Figur gut erkannt werden, beim ersten Experiment konnte der Amplitundenunterschied nicht immer perfekt erkannt werden. Somit kam es zu Messungenauigkeiten aufgrund der falschen Erkennung der Maxima (bei der ersten Messmethode).
+Für uns war die Messung mittels Lissajous-Figuren genauer, denn der Phasenübergang konnte aufgrund der diagonalen Linie als Figur gut erkannt werden, beim ersten Experiment konnte der Amplitundenunterschied nicht immer perfekt erkannt werden. Somit kam es zu Messungenauigkeiten aufgrund der falschen Erkennung der Maxima (bei der ersten Messmethode). Mittels den Lissajous-Figuren konnte man erkennen, dass bei diesen falschen Maxima die Ellipse schmäler und dann wierder breiter wurde, aber nicht vollkommen zu Strichen.
 
 Was sind Vor-, bzw. Nachteile der jeweiligen Messmethode? Vergleichen Sie das bessere Ergebnis mit
 Literaturwerten. Geben Sie ihre Abweichung an und begründen Sie!
 
-TODO
+Vorteil der Lissajous-Methode ist das Maxima genauer zu erkennen sind, Nachteil ist das ein Oszilloskop dafür notwendig ist und das es bei anderen Verrsuchen wo das ausgesendete nicht mehr gleich dem gemessen Singal ist, wie bei der Interferenz oder bei einem Übergang in ein anderes Medium, verwendet werden kann. Nachteil der ersten Methode ist das es schwieriger ist Maxima zu erkennen, aber der Aufbau auch nur mit einem Multimeter möglich wäre.
+
+\section{Schallbeugung und -interferenz}
+
+\subsection{Strahlungsverteilung des Senders}
+\label{sec:kreis}
+
+Der Sender wurde in der Mitte der Winkelplatte platziert und der Empfänger entlang dieser so bewegt, dass er in Richtung Sender zeigte.
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    0  & 5.36 \\
+    5  & 6.8 \\
+    10 & 7.04 \\
+    15 & 5.52 \\
+    20 & 4.32 \\
+    25 & 4 \\
+    30 & 3.07 \\
+    35 & 2.4 \\
+    40 & 1.67 \\
+    50 & 0.92 \\
+    60 & 0.58 \\
+    70 & 0.52 \\
+    80 & 0.5 \\
+    90 & 0.48 \\
+   -10 & 6.64 \\
+   -20 & 4.48 \\
+   -30 & 2.88 \\
+   -40 & 1.44 \\
+   -50 & 0.78 \\
+   -60 & 0.56 \\
+   -70 & 0.52 \\
+   -80 & 0.48 \\
+   -90 & 0.48 \\
+  \end{tabular}
+  \caption{Messwerte Spannung Spitze-Spitze abhängig vom Winkel}
+  \label{tab:winkel1}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.85\textwidth, height=7cm,
+      xlabel={Winkel $\varphi$ ($^\circ$)},
+      ylabel={$U_{SS}$ (V)},
+      xmin=-95, xmax=95, ymin=0, ymax=8,
+      xtick={-90,-60,...,90},
+      grid=major,
+    ]
+      \addplot[blue, thick, mark=*, mark size=1.5pt] coordinates {
+        (-90,0.48) (-80,0.48) (-70,0.52) (-60,0.56) (-50,0.78)
+        (-40,1.44) (-30,2.88) (-20,4.48) (-10,6.64) (0,5.36)
+        (5,6.8) (10,7.04) (15,5.52) (20,4.32) (25,4)
+        (30,3.07) (35,2.4) (40,1.67) (50,0.92) (60,0.58)
+        (70,0.52) (80,0.5) (90,0.48)
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Strahlungsverteilung des Senders: $U_{SS}$ in Abhängigkeit vom Winkel $\varphi$}
+  \label{fig:strahlung_kart}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{polaraxis}[
+      width=9cm,
+      xmin=-90, xmax=90,
+      ymin=0, ymax=8,
+      xtick={-90,-60,...,90},
+      ytick={2,4,6,8},
+      yticklabel style={font=\small},
+    ]
+      \addplot[blue, thick, mark=*, mark size=1.5pt] coordinates {
+        (-90,0.48) (-80,0.48) (-70,0.52) (-60,0.56) (-50,0.78)
+        (-40,1.44) (-30,2.88) (-20,4.48) (-10,6.64) (0,5.36)
+        (5,6.8) (10,7.04) (15,5.52) (20,4.32) (25,4)
+        (30,3.07) (35,2.4) (40,1.67) (50,0.92) (60,0.58)
+        (70,0.52) (80,0.5) (90,0.48)
+      };
+    \end{polaraxis}
+  \end{tikzpicture}
+  \caption{Richtcharakteristik des Senders ($U_{SS}$ in V, Winkel in $^\circ$)}
+  \label{fig:strahlung_polar}
+\end{figure}
+
+Weiters wurde bei ausgeschaltenem Empfänger ein Hintergrund von 480 mV gemessen.
+
+Die gemessene Spannung nimmt bis 10° zu und von dann an ab. Ab circa 70° ist das Signal im Vergleich mit dem Hintergrund kaum noch messbar. Bei einer idealen Punktquelle wäre ein gleichmäßiges Signal bei allen Winkeln erwartbar, bzw. bei einem Richtungssender ein konstantes in eine Richtung und 0 überall sonst. Aufgrund von Beugung und der Funktionsweise der Schallquelle ist dies jedoch nicht möglich. 
+
+Unerwartet ist, dass das Signal in negative Winkelrichtung kleiner ist als in positive Winkelrichtung, dies könnte auf eine schiefe Aufstellung oder nicht gleichmäßige Austahlung zurückführbar sein. Dass das Signal bei 10° und nicht bei 0° am stärksten ist könnte dadurch erklärbar sein, dass Sender und Empfänger nicht punktförmig sind und daher zwischen am linken und rechten Rand ausgestrahlten Ultraschallwellen Interferenz auftritt, ähnlich zu Fresnelzonen. 
+
+
+\subsection{Interferenz am Doppelspalt}
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    0  & 4.48 \\
+    5  & 1.04 \\
+    10 & 5.76 \\
+    15 & 2.06 \\
+    20 & 5.14 \\
+    30 & 4.2 \\
+    40 & 3.02 \\
+    50 & 2.8 \\
+    60 & 2.92 \\
+    -5 & 1.04\\
+   -10 & 5.84 \\
+   -15 & 2.24 \\
+   -20 & 4.88 \\
+   -30 & 3.92\\
+   -40 & 3.04\\
+   -50 & 3.28\\
+   -60 & 1.84\\
+  \end{tabular}
+  \caption{Doppelspalt: Messwerte Spannung Spitze-Spitze abhängig vom Winkel}
+  \label{tab:doppelspalt1}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.85\textwidth, height=7cm,
+      xlabel={Winkel $\varphi$ ($^\circ$)},
+      ylabel={$U_{SS}$ (V)},
+      xmin=-65, xmax=65, ymin=0, ymax=7,
+      xtick={-60,-50,...,60},
+      grid=major,
+    ]
+      \addplot[red, thick, mark=*, mark size=1.5pt] coordinates {
+        (-60,1.84) (-50,3.28) (-40,3.04) (-30,3.92) (-20,4.88)
+        (-15,2.24) (-10,5.84) (-5,1.04) (0,4.48) (5,1.04)
+        (10,5.76) (15,2.06) (20,5.14) (30,4.2) (40,3.02)
+        (50,2.8) (60,2.92)
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Doppelspalt: $U_{SS}$ in Abhängigkeit vom Winkel $\varphi$}
+  \label{fig:doppelspalt_kart}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{polaraxis}[
+      width=9cm,
+      xmin=-60, xmax=60,
+      ymin=0, ymax=6,
+      xtick={-60,-45,...,60},
+      ytick={2,4,6},
+      yticklabel style={font=\small},
+    ]
+      \addplot[red, thick, mark=*, mark size=1.5pt] coordinates {
+        (-60,1.84) (-50,3.28) (-40,3.04) (-30,3.92) (-20,4.88)
+        (-15,2.24) (-10,5.84) (-5,1.04) (0,4.48) (5,1.04)
+        (10,5.76) (15,2.06) (20,5.14) (30,4.2) (40,3.02)
+        (50,2.8) (60,2.92)
+      };
+    \end{polaraxis}
+  \end{tikzpicture}
+  \caption{Doppelspalt: $U_{SS}$ (in V) in Abhängigkeit vom Winkel $\varphi$}
+  \label{fig:doppelspalt_polar}
+\end{figure}
+
+Für dieses Experiment wurde der Aufbau von Kapitel \ref{sec:kreis} verwendet und ein Doppelspalt mit $d=50mm$ vor den Sender platziert, dann wurden wie bei \ref{sec:kreis} die Spannung abhängig vom Winkel gemessen, und die Maxima und Minima mittels folgenden Formeln berechnet und derren Stärke gemessen:
+$$ d \sin{\theta} = n \, \lambda \qquad \textit{Maxima}$$ 
+$$ d \sin{\theta} = \left (n- \frac{1}{2} \right) \lambda \qquad \textit{Minima}$$ 
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    2 & 0 & 5.6 \\
+    11 & 1 & 5.8 \\
+    21 & 2 & 5.4 \\
+    33 & 3 & 4.9 \\
+  \end{tabular}
+  \caption{Doppelspalt: Maxima}
+  \label{tab:doppelspaltmax}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    -5 & -1 & 0.88 \\
+    -15 & -2 & 2.56 \\
+    6 & 1 & 1.44 \\
+    15 & 2 & 2,48 \\
+  \end{tabular}
+  \caption{Doppelspalt: Mimima}
+  \label{tab:doppelspaltmin}
+\end{table}
+
+\subsection{Fragen zum Kapitel}
+
+Frage: Vermessen Sie die Lage möglichst vieler Maxima und Minima (bis n = 3 sehr gut messbar) und vergleichen
+Sie das Ergebnis mit den Vorhersagen in Gleichungen (3.1) und (3.2). Was fällt bei der grafischen Darstellung auf
+und worin liegt die Ursache?
+
+Je weiter vom Mittelpunkt entfernt umso mehr verschwimmen die Maxima und Minima, also die Amplitude der Maxima nimmt ab und die der Minima zu. Aufgrund der Koheränzlänge also der Wegunterschied wird immer kleiner im Verhältnis zum Weg, und generell nimmt die Intensität der entstehenden Wellen im Spalt radial ab, also nahe der Mitte addieren/subtrahieren sich zwei hohe Amplituden und bei den größeren n sind diese Amplituden niedriger.
+
+\subsection{Lloydscher Spiegel}
+
+Für diesen Versuch wurde der Sender bei -45° und der Empfänger bei 45° auf der Winkelplatte platziert und im Ursprung eine Metallplatte als Spiegel. Abhängig vom Winkel wurden folgende Spannungen gemessen:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    45  & 5.4 \\
+    40  & 3.7 \\
+    35 & 4.1 \\
+    30 & 3.6 \\
+    25 & 2.9 \\
+    20 & 2.6 \\
+    10 & 2.4 \\
+    0 & 0.96  \\
+    50 & 5.1 \\
+    55 & 3.9\\
+    60 & 4 \\
+    65 & 3.4 \\
+    70 & 3.1 \\
+    80 & 2.1 \\
+  \end{tabular}
+  \caption{Messwerte Lloydscher Spiegel}
+  \label{tab:doppelspalt1}
+\end{table}
+
+Es ist zu sehen, dass auf der gespiegelten bzw. entgegengesetzten Seite zum Sender die Empfangsstärke um einiges höher ist.
+
+\subsection{Interferenz bei zwei Sendern gleicher Frequenz}
+
+Folgende Maxima wurden gemessen:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    1 & 0 & 15.2 \\
+    10 & 1 & 11.2 \\
+    18 & 2 & 11 \\
+    27 & 3 & 8.5 \\
+    -8 & -1 & 11 \\
+    -17 & -2 & 10.4 \\
+  \end{tabular}
+  \caption{Messwerte der Maxima zweier Sender gleicher Frequenz}
+  \label{tab:doppelspalt1}
+\end{table}
+
+Folgende Minima wurden gemessen:
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c| }
+    \multicolumn{1}{c}{Winkel $\varphi$ (°)} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{$U_{SS}$ (V)} \\
+    6 & 1 & 2.8 \\
+    14 & 2 & 4.3 \\
+    23 & 3 & 5.7 \\
+    -3 & 0 & 2.5 \\
+    -13 & -1 & 4.2 \\
+  \end{tabular}
+  \caption{Messwerte der Minima zweier Sender gleicher Frequenz}
+  \label{tab:doppelspalt1}
+\end{table}
+
+Vergleicht man die hier gemessenen Werte mit denen aus Tabelle \ref{tab:doppelspalt1}, erkennt man, dass die Werte für die jeweiligen Winkel hier den doppelten von den zuvor gemessenen entsprechen. Z.b. bei $\varphi = 10^\circ \Rightarrow 5.76\, V$, bei diesem Versuch ist es $\varphi = 10^\circ \Rightarrow 11.2\, V$
+$$ 5.76 \cdot 2 = 11.52 \, V $$
+
+Die Ergebnisse des Doppelspalts und der doppelten Sender sind sich somit sehr ähnlich.
+
+\section{Akustische Interferometrie}
+
+\subsection{Schwebungen}
+
+Der erste Funktionsgenerator wurde auf 40.19kHz eingestellt, der zweite auf 39.24kHz. Der Aufbau ist sehr ähnlich zum letzten Versuch, jedoch steht der Empfänger nun bei Abstand r beim Winkel von ca. 10°, da dort die Schwebungserscheinung am besten zu erkennen war.
+
+Am Oszilloskop wurden für eine Periode der einhüllenden Kurve der Schwebung 8.5 Kästchen bei $M = 250 \mu s$ gezählt. Somit ergibt sich für die gemesse Frequenz der einhüllenden Kurve:
+$$ 8.5 \cdot 250 \mu s = 2.125 ms $$
+
+Vergleich mit den gerechneten Werten:
+$$ \Delta \omega = \frac{1}{2}(\omega_1 - \omega_2) = \frac{1}{2}(40.19 - 39.24) \cdot 10^3 = 0.475 \cdot 10^3 = 475\,Hz $$
+$$ \Rightarrow \frac{1}{475} \approx 2.105\,ms $$
+
+Der gemessene Wert von 2.125ms und der errechnete Wert von 2.105ms stimmen sehr genau überein.
+
+Leider konnten keine weiteren Messungen bei anderen Frequenzen für $\omega_2$ durchgeführt werden aufgrund von Zeitdruck. 
+
+\subsection{Überlagerung von Schwebungen}
+
+Aufgrund von zeitlichen Problemen konnte dieser Versuch leider nicht durchgeführt werden.
 
 \end{document}
