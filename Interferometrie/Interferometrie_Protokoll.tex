@@ -29,6 +29,7 @@
 \usepackage{lastpage}
 \usepackage{amsmath,amssymb}
 \usepackage{tikz}
+\usepackage{xfrac}
 
 % \input{glyphtounicode}
 % \pdfgentounicode=1
@@ -115,7 +116,7 @@ Als Lichtquelle wurde ein He-Ne-Laser 155 und als Interferometriesystem ein Proj
   \label{tab:linsen}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{aufbau_laser.png}
   \caption{Aufbau zur Messung der Wellenlänge des He-Ne-Lasers}
@@ -150,12 +151,12 @@ Bei der Durchführung der Messungen gab es zuerst einige Unklarheiten, wie beisp
 \centering
 \setlength{\tabcolsep}{10pt}
 \begin{tabular}{ |c|c| }
-  \multicolumn{1}{c}{ Umdrehungen n}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
-  $\frac{4}{5}$ & 127 \\
-  $\frac{3}{5}$ & 87 \\
-  $\frac{1}{5}$ & 31 \\
+  \multicolumn{1}{c}{Umdrehungen n}  & \multicolumn{1}{c}{$\sum$ Ringe} \\
+  $\sfrac{4}{5}$ & 127 \\
+  $\sfrac{3}{5}$ & 87 \\
+  $\sfrac{1}{5}$ & 31 \\
   1 & 162 \\
-  $\frac{4}{5}$ & 133 \\
+  $\sfrac{4}{5}$ & 133 \\
 \end{tabular}
 \caption{Interferometrische Wellenlängenmessung}
 \label{tab:lasermessung}
@@ -194,12 +195,12 @@ Diese Rechnung lässt sich für jede Messung mit dem entsprechenden $\Delta l$ u
 \centering
 \setlength{\tabcolsep}{10pt}
 \begin{tabular}{ |c|c|c| }
-  \multicolumn{1}{c}{Umdrehungen n} & \multicolumn{1}{c}{$\sum$ Ringe $m$} & \multicolumn{1}{c}{berechnete Distanz $d_{voll}$ [$\mu m$]} \\
-  $\frac{4}{5}$ & 127 & $ 50.26\pm 3.93$ \\
-  $\frac{3}{5}$ & 87 & $ 45.9\pm 4.88$ \\
-  $\frac{1}{5}$ & 31 & $ 49.17\pm 15.42$ \\
+  \multicolumn{1}{c}{Umdrehungen n} & \multicolumn{1}{c}{$\sum$ Ringe $m$} & \multicolumn{1}{c}{berechnete Distanz $d_{Voll}$ [$\mu m$]} \\
+  $\sfrac{4}{5}$ & 127 & $ 50.26\pm 3.93$ \\
+  $\sfrac{3}{5}$ & 87 & $ 45.9\pm 4.88$ \\
+  $\sfrac{1}{5}$ & 31 & $ 49.17\pm 15.42$ \\
   1 & 162 & $ 51.29\pm 3.2$ \\
-  $\frac{4}{5}$ & 133 & $ 52.61 \pm 4.08$ \\
+  $\sfrac{4}{5}$ & 133 & $ 52.61 \pm 4.08$ \\
 \end{tabular}
 \caption{Ermittelte Verschibungsdistanz}
 \label{tab:wellenlängeberechnet}
@@ -220,7 +221,7 @@ Mit dem gleichen Aufbau wie in Abschnitt \ref{laser_messung} kann die Brechzahl�
 
 Nach 5 Minuten Wartezeit wurde der Heizwiderstand vorsichtig in den Strahlengang des Spiegels SP2 gehalten, um das Interferenzmuster mit der Wärmeabstrahlung des Widerstands zu beeinflussen. Dies ist in Abbildung \ref{fig:widerstandinterferenz} zu sehen.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{widerstand_muster.png}
 \caption{Interferenzmuster mit Heizwiderstand}
@@ -352,29 +353,31 @@ Die Breite der einzelnen Linien ist damit deutlich kleiner als der Abstand der b
 
 \subsection{Visualisierung der Werteverteilungen (Laser)} \label{gauss_visualisation}
 
-Die Messwerte bei der Messung der Wellenlänge des He-Ne-Laserlichts können statistisch mit einer Gauß-Verteilung visualisiert werden. Dafür muss die Standardabweichung $\sigma$, der Mittelwert $\bar{x}$ und dessen Fehler errechnet werden:
+Die Messwerte für die Verschiebung pro Umdrehung der Differential-Schraube (siehe Abschnitt \ref{laser_messung}) können statistisch mit einer Gauß-Verteilung visualisiert werden. Dafür müssen der Mittelwert $\bar{d}$, die Standardabweichung $\sigma$ und der Fehler des Mittelwerts errechnet werden:
 
 \begin{equation}
-  \bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i \approx 636.7 \, nm
+  \bar{d} = \frac{1}{N} \sum_{i=1}^{N} d_i \approx 49.8 \, \mu m
   \label{eq:?.2}
 \end{equation}
 
 \begin{equation}
-  \sigma = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2} \approx 33.7 \, nm
+  \sigma = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (d_i - \bar{d})^2} \approx 2.5 \, \mu m
   \label{eq:?.1}
 \end{equation}
 
 \begin{equation}
-  \Delta \bar{x} = \frac{\sigma}{\sqrt{N}} \approx 15.1 \, nm
+  \Delta \bar{d} = \frac{\sigma}{\sqrt{N}} \approx 1.1 \, \mu m
   \label{eq:?.3}
 \end{equation}
 
-Anschließend können die gemessenen Werte für $\sigma$, $\bar{\lambda}$ zusätzlich zum Literaturwert von $\lambda \approx 632.8 \,nm$ mit einem Python-Skript mit den Bibliotheken matplotlib und numpy als Gauß-Verteilung dargestellt werden:
+Dieser Wert beschreibt nur die Streuung der Einzelmessungen. Der Fehler aus Formel \ref{eq:4.1.4} ist größer, da er zusätzlich die abgeschätzten Unsicherheiten beim Zählen der Ringe und beim Ablesen der Umdrehungen enthält.
+
+Anschließend können die gemessenen Werte für $\sigma$ und $\bar{d}$ zusätzlich zum Skalenwert von $50 \, \mu m$ pro Umdrehung mit einem Python-Skript mit den Bibliotheken matplotlib und numpy als Gauß-Verteilung dargestellt werden:
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{gauss_laser_plot.png}
-  \caption{Gauß-Verteilung der Laser-Wellenlängen}
+  \includegraphics[width=0.8\textwidth]{gauss_laser_plot_2.png}
+  \caption{Gauß-Verteilung der Verschiebung pro Umdrehung}
   \label{fig:Gausswellenlängen}
 \end{figure}
 
