@@ -1,0 +1,164 @@
+\documentclass[
+  headings=optiontotocandhead,
+  twoside,
+  openright,
+  numbers=noenddot,
+  toc=flat,
+  11pt,
+  parskip=full,
+  listof=flat,
+  bibliography=totoc,
+  a4paper,
+  DIV=14,
+  BCOR=22mm,
+  headheight=5mm,
+  headinclude=true,
+]{scrartcl}
+
+% \usepackage{fontspec}
+% \usepackage{titlesec}
+\usepackage{float}
+\usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[main=ngerman]{babel} %texlive-langgerman muss installiert sein
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{relsize}
+\usepackage{lastpage}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+
+% \input{glyphtounicode}
+% \pdfgentounicode=1
+
+\clubpenalty = 1000 % Schusterjungen verhindern
+\widowpenalty = 1000 % Hurenkinder verhindern
+\displaywidowpenalty = 1000
+
+\graphicspath{{./assets/}{./plotting/}}
+
+\newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{TU_Logo_RGB}}
+\newcommand{\kopftitel}{\sffamily{\textbf{\large{Laborprotokoll Drehpendel}}}}
+
+\usepackage[automark,footsepline,plainfootsepline]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
+\setkomafont{pagenumber}{\normalfont\normalsize}
+\clearpairofpagestyles
+\ihead{\headmark}
+\ihead{\kopfbild}
+\ohead{\kopftitel}
+\ifoot{\smaller{David Koch, Paul Vetter}}
+\ofoot{Seite \pagemark/\pageref{LastPage}}
+
+\title{Laborprotokoll Drehpendel}
+\author{David Koch, Paul Vetter}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\tableofcontents
+\end{titlepage}
+
+\setcounter{page}{2}
+\renewcommand{\thepage}{\the\numexpr\value{page}-1\relax}
+
+\section{Vorbereitung/Aufbau}
+
+In CASSY Lab wurden folgende Werte eingestellt:
+
+\begin{itemize}
+  \item Frequenzbereich: 300kHz
+  \item Funktion: Sinuswelle
+\end{itemize}
+
+\section{Bestimmung der Eigenfrequenz}
+
+Für die Bestimmung der Eigenfrequenz wurde das Drehpendel mehrfach manuell aus seiner Ruhelage ausgelenkt und die Schwingung in CASSY Lab beobachtet. Es wurde der zeitliche Abstand $\Delta t$ zwischen $n$ Scheiteln gemessen und vermerkt, um daraus mit folgender Formel die Eigenfrequenz des Drehpendels zu berechnen:
+
+$$ f = \frac{n}{\Delta t}, \quad \omega = 2 \pi f $$
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{ |c|c|c|c| }
+    \multicolumn{1}{c}{$\Delta t$ [s]} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{$f$ [Hz]} & \multicolumn{1}{c}{$\omega$ [rad/s]} \\
+    7.67 & 4 & 0.5215 & 3.2768 \\
+    7.69 & 4 & 0.5202 & 3.2682 \\
+    7.69 & 4 & 0.5202 & 3.2682 \\
+    5.75 & 3 & 0.5217 & 3.2782 \\
+    5.73 & 3 & 0.5236 & 3.2896 \\
+  \end{tabular}
+  \caption{Gemessene Zeitintervalle $\Delta t$ für $n$ Schwingungen und daraus berechnete Eigenfrequenz $f$ bzw. Kreisfrequenz $\omega$}
+  \label{tab:eigenfrequenz_messung}
+\end{table}
+
+$$ \overline{f} = \frac{1}{N}\sum_{i=1}^{N} f_i \approx 0.52142 \, \text{Hz}, \quad
+   \overline{\omega} = \frac{1}{N}\sum_{i=1}^{N} \omega_i \approx 3.2762 \, \text{rad}/\text{s}, \quad N = 5 $$
+
+Standardabweichung der Einzelmessungen:
+$$ s_f = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}\left(f_i - \overline{f}\right)^2} \approx 0.0014 \, \text{Hz}, \quad
+   s_\omega = 2\pi \, s_f \approx 0.0088 \, \text{rad}/\text{s} $$
+
+Standardfehler des Mittelwerts:
+$$ \Delta\overline{f} = \frac{s_f}{\sqrt{N}} \approx 0.0006 \, \text{Hz}, \quad
+   \Delta\overline{\omega} = \frac{s_\omega}{\sqrt{N}} = 2\pi\,\Delta\overline{f} \approx 0.004 \, \text{rad}/\text{s} $$
+
+Ergebnis:
+$$ f = (0.5214 \pm 0.0006) \, \text{Hz}, \quad \omega = (3.276 \pm 0.004) \, \text{rad}/\text{s} $$
+
+\subsection{Dämpfungskoeffizient bei Betrieb ohne zusätzliche Dämpfung}
+
+TODO
+
+\textbf{Welche Methode ist genauer? Welche Ursachen kann die Ungenauigkeit der Berechnung haben?}
+TODO
+
+\textbf{Welchen Einfluss hat die Dämpfung auf die bestimmte Eigenfrequenz? Berechnen Sie den Fehler!}
+TODO
+
+\subsection{Winkelgeschwindigkeit und -beschleunigung}
+
+\textbf{Wie hängen Auslenkung, Winkelgeschwindigkeit und -beschleunigung zusammen?}
+
+Wenn der Winkel der Auslenkung $\varphi(t)$ ist, dann ist die Winkelgeschwindigkeit die erste zeitliche Ableitung davon, also $\dot{\varphi}(t)$, und die Winkelbeschleunigung die zweite zeitliche Ableitung $\ddot{\varphi}(t)$.
+
+\section{Schwingung bei verschiedenen Dämpfungen}
+
+TODO
+
+\textbf{Wie wird ein Amperemeter angeschlossen? Wie ein Voltmeter?}
+
+Das Amperemeter misst den Strom, der durch ein Bauteil fließt. Dazu muss dieser Strom auch durch das Messgerät fließen. Man trennt also den Stromkreis auf und setzt das Amperemeter in die Lücke, also seriell zum Bauteil.
+
+Das Voltmeter misst die Spannung, also die Potentialdifferenz zwischen zwei Punkten. Es wird deshalb an die beiden Anschlüsse des Bauteils angeklemmt, ohne den Stromkreis aufzutrennen, also parallel zum Bauteil.
+
+\textbf{Wie ändert sich die Abklingkonstante als Funktion des Spulenstroms? Wie kann dieser Zusammenhang theoretisch erklärt werden?}
+TODO
+
+\section{Zusammenhang Erregerfrequenz / Erregerspannung}
+
+TODO
+
+\textbf{Kann die Erregerfrequenz indirekt gemessen werden? Wie hängen Erregerfrequenz und Pendelfrequenz zusammen? Schätzen Sie den Fehler ab, wenn die Pendelfrequenz anstatt der Erregerfrequenz gemessen wird.}
+TODO
+
+\section{Resonanzkurve bei verschiedenen Dämpfungen}
+
+TODO
+
+\subsection{Beobachtung der Phasendifferenz}
+
+TODO
+
+\textbf{Wie verhalten sich die Phasen von Erreger und Pendel zueinander?}
+TODO
+
+\end{document}
